@@ -17,7 +17,7 @@ var appServer = function(config) {
     log: true,
     debug: true,
     verify: false,
-    port: process.env.port || 8080,
+    port: process.env.PORT || 8080,
     httpEnabled: true,
     httpsEnabled: false,
     public_html: 'public_html',
