@@ -9,7 +9,7 @@ app.launch(function(req, res) {
   res.say("What you want me to do?");
 });
 
-app.intent('GoogleIt', {
+app.intent('GoogleItForMe', {
   "slots": { "SearchItem": "LITERAL" },
   "utterances": ["{Search for|Google|I want to know about} {Alexa|Latest Movies|Weather|Nearest clinic|Jokes}"]
 }, function(req, res) {
