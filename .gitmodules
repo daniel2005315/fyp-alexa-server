@@ -1,6 +1,3 @@
-[submodule "google_it"]
-	path = google_it
-	url = https://github.com/daniel2005315/google_it.git
 [submodule "apps/google_it"]
 	path = apps/google_it
 	url = https://github.com/daniel2005315/google_it.git
