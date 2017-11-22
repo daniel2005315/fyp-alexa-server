@@ -1,0 +1,91 @@
+{
+  "_args": [
+    [
+      "sentiment",
+      "C:\\Users\\daniel\\Desktop\\FYP\\fyp-alexa-server"
+    ]
+  ],
+  "_from": "sentiment@latest",
+  "_id": "sentiment@4.1.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/sentiment",
+  "_nodeVersion": "4.8.4",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/sentiment-4.1.0.tgz_1507630954062_0.1472208183258772"
+  },
+  "_npmUser": {
+    "email": "andrewsliwinski@acm.org",
+    "name": "diy"
+  },
+  "_npmVersion": "2.15.11",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "sentiment",
+    "raw": "sentiment",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/sentiment/-/sentiment-4.1.0.tgz",
+  "_shasum": "8384635b06f5c1c1dba359c99d20dfd931764c38",
+  "_shrinkwrap": null,
+  "_spec": "sentiment",
+  "_where": "C:\\Users\\daniel\\Desktop\\FYP\\fyp-alexa-server",
+  "author": {
+    "email": "andrewsliwinski@acm.org",
+    "name": "Andrew Sliwinski"
+  },
+  "bugs": {
+    "url": "https://github.com/thisandagain/sentiment/issues"
+  },
+  "dependencies": {},
+  "description": "AFINN-based sentiment analysis for Node.js",
+  "devDependencies": {
+    "Sentimental": "1.0.1",
+    "async": "^2.1.5",
+    "benchmark": "^2.1.0",
+    "eslint": "^4.6.1",
+    "tap": "^10.1.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "8384635b06f5c1c1dba359c99d20dfd931764c38",
+    "tarball": "https://registry.npmjs.org/sentiment/-/sentiment-4.1.0.tgz"
+  },
+  "engines": {
+    "node": ">=4.0"
+  },
+  "gitHead": "6916ce09a0e76af196e37103e270421071b8a0cf",
+  "homepage": "https://github.com/thisandagain/sentiment",
+  "keywords": [
+    "sentiment",
+    "analysis",
+    "nlp",
+    "sentiment analysis"
+  ],
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "maintainers": [
+    {
+      "email": "help@diy.org",
+      "name": "diy"
+    }
+  ],
+  "name": "sentiment",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisandagain/sentiment.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "version": "4.1.0"
+}

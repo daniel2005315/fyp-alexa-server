@@ -1,6 +1,10 @@
 'use strict';
 
 var AlexaAppServer = require("alexa-app-server");
+var sentiment_Analyser = require("./process/sAnalyse.js");
+var entityClassifier = require("./process/entityTrain.js");
+
+
 
 var server = new AlexaAppServer({
   server_root: './',
@@ -9,4 +13,17 @@ var server = new AlexaAppServer({
 
 });
 
+
+
+// Set up the data before server starts
+entityClassifier.init();
+
+// Test the training feature
+//entityClassifier.addToTraining(coffee,'coffee');
+
 server.start();
+// test express routing
+server.express.use('/input', function(req,res){
+  var score = sentiment_Analyser(req,res);
+  res.json(score);
+})

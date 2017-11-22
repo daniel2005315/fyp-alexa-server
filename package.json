@@ -1,8 +1,8 @@
 {
-  "name": "alexa-nodejs-test",
+  "name": "fyp-alexa-app-server",
   "version": "1.0.0",
-  "description": "Test for alexa app framwork",
-  "main": "index.js",
+  "description": "Self hosted alexa server",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,15 @@
   "engines": {
     "node": "5.10.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daniel2005315/fyp-alexa-server"
+  },
   "dependencies": {
-    "alexa-app-server": "^3.0.1"
+    "alexa-app-server": "^3.0.1",
+    "chinese-tokenizer": "^0.1.2",
+    "natural": "^0.5.4",
+    "pos": "^0.4.2",
+    "sentiment": "^4.1.0"
   }
 }
