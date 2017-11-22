@@ -1,3 +1,6 @@
 [submodule "apps/google_it"]
 	path = apps/google_it
 	url = https://github.com/daniel2005315/google_it.git
+[submodule "apps/my_friend"]
+	path = apps/my_friend
+	url = https://github.com/daniel2005315/my_friend.git
