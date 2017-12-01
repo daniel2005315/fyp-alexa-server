@@ -79,7 +79,7 @@ addToTraining: function(input, classLabel) {
       console.log("Classifier has been saved");
     });
   });
-}
+},
 
 classify: function(input){
   natural.BayesClassifier.load('./training/classifier.json', null, function(err, classifier) {
