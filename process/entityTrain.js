@@ -80,4 +80,12 @@ addToTraining: function(input, classLabel) {
     });
   });
 }
+
+classify: function(input){
+  natural.BayesClassifier.load('./training/classifier.json', null, function(err, classifier) {
+    var output =classifier.getClassifications(input);
+    console.log("classifying =>"+input+"... Result is->"+output);
+    return output;
+  });
+}
 }

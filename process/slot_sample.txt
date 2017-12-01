@@ -1,0 +1,1207 @@
+{
+"id":null,
+"name":{
+"value": "He is a guard.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Glenn isn't a lawyer.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Jackie didn't become a doctor.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I'm not careless.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Mary hasn't become a garbage man.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They are selfish.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I'm not selfish.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I'm not a car mechanic.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Margaret isn't a dentist.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Miss Johnson didn't become a photographer.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I am a spy.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Luke didn't become a farmer.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They aren't musicians.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Amanda won't become a police officer.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I am a news announcer.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "She is a police officer.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Tom isn't famous.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I am a car mechanic.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "He is busy.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Catherine hasn't become a librarian.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They are poor.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Tony seems short.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Edward isn't a scientist.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Roger's father doesn't seem quiet.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Rebecca doesn't look kind.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I lend him the bicycle.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those science teachers strike him a heavy blow.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They sent him a package.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "That computer programmer lends him a pencil.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those barbers granted him his wish.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those taxi drivers offered her a ride home.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those taxi drivers pay him this salary.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those bartenders left her a ticket.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I paid him this salary.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Bob struck him a heavy blow.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "That bus driver tells them many lies.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They envied him his good fortune.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "That barber made him some coffee.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I asked him a question.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Ned got the TV repaired.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They elected him president.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I called him "the musician".",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those bartenders named the baby Susan.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "That bus driver called him George.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I called him a taxi.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Michael elected him president.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "That teacher elected him president.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I make him cry.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "That computer programmer heard the girl crying.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I painted the room green.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I appointed him committee chairman.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those cashiers left the door open.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I name the baby Susan.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They named the baby Susan.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "We called her "the strange librarian".",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I leave the door open.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Christine keeps the room warm.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They name the dog Fido.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I called him "the fisherman".",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I'm not working next to the police station.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "You are always working.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "That bus driver isn't playing right now.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Dick is laughing on the top of the mountain right now.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Abraham is working.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They aren't shouting at school at this exact moment.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They are not reading by the sea right now.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Glenn is not surfing near the tree at the moment.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I'm not shouting now.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They are shouting.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Is the cashier shaving in the classroom?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those lawyers are not praying.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I am not shaving.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Are the plumbers reading at home?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those police officers are not playing in the doghouse.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I am not eating next to the police station now.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I'm not dancing.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "That manager isn't running in the river.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Is Jack praying by the sea?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Glenn isn't playing just now.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The guards have a some textbooks below the bridge.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Does Meg work in the doghouse?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The politician doesn't sleep in the mountains.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I didn't laugh on the street.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Marge has some trucks next to the police station.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Amanda doesn't run over there.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Does Doug sleep near our school?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Wasn't Charlie dancing behind the post office?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I didn't eat at the drugstore.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those science teachers are not sleeping below the bridge nowadays.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Is Edward surfing between the two buildings?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The musicians don't study at school.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Lawrence wasn't jogging by the sea.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I didn't surf in front of the restaurant.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Did Tony shave between the two mountains?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Becky didn't surf nicely.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Joanne's mother didn't cook last night at eleven.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Did those singers study for two or three months?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The fishermen shouted last summer.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those store clerks didn't shave in front of the restaurant.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those musicians didn't surf.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Steve didn't surf fast.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The barbers played.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Sarah laughed for a few months.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Betty Sue didn't shave last summer.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I surf.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They shaved.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Those thieves jump.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I pray.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I cook for a long time.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I shaved.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Do you sing for quite a few years?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Doesn't Robert shout every night?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The teachers pray for a few hours.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Doesn't Jackie always drive?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The carpenters read for two hours.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "That bartender doesn't ski every other week.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Don't most bartenders run every month?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The teacher plays well.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Many fishermen don't dance every year.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Don't you read fast?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The bus drivers always run.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I don't always pray.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Do you ski for half an hour?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Does Andy always pray?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Larry has already jumped.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Haven't the science teachers talked?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Have the police officers run yet?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Haven't the teachers ever swum?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They have jumped.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "They have just cooked.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "She has shouted for quite a few years.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The lawyers have skied for a day or two.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Has Mike already shouted?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The carpenters have jogged.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "She has read for a few months.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The teachers haven't slept yet",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "The librarians haven't eaten.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Haven't the bartenders prayed?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Haven't you run?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Weren't those doctors studying last January?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Were those students jogging at home?",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Abraham wasn't skiing on the top of the mountain.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Earlier this morning Ashley was still walking.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "You were swimming nicely.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Connie's husband had fought for four months.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I had been playing but I was cooking.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Elizabeth had shouted for quite some time.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I was feeling crazy because I had just shaved.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Connie's husband had fought for four months.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I had been playing but I was cooking.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Elizabeth had shouted for quite some time.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Roy had already skied.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Roy had already skied.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I was feeling crazy because I had just shaved.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "I had been cooking but I was studying.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Alfred's niece didn't sleep because Ginger had read.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "John didn't dance because Ann Lynn had surfed.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Luke had read for five years.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "Connie's husband wasn't by the sea because Betsy's nephew had eaten for a long time.",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},{
+"id":null,
+"name":{
+"value": "",
+"synonyms": []
+}
+},

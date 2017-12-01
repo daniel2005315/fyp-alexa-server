@@ -1,0 +1,179 @@
+,
+      {
+        "name": "PreferencePhrase",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "like",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "prefer",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "dislike",
+              "synonyms": [
+                "don't like"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "love",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "don't love",
+              "synonyms": [
+                "do not love"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "hate",
+              "synonyms": [
+                "hates",
+                "hated",
+                "always hate"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "happy",
+              "synonyms": [
+                "glad"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "positive",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the best",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "remarkable",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "irreplaceble",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "greatest",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "great",
+              "synonyms": []
+            }
+    
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "really like",
+              "synonyms": []
+            }
+          },
+          {
+            
+              "value": "so great",
+              "synonyms": []
+     
+          {
+            "id": null,
+            "name": {
+              "value": "can not be worse",
+              "synonyms": [
+                "can't be worse"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "can not be better",
+              "synonyms": [
+                "can't be better"
+              ]
+            }
+          },       }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "unfogetable",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "the worst",
+              "synonyms": []
+            }
+          },"id": null,
+            "name": {
+              "value": "so good",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {      },
+          {
+            "id": null,
+            "name": {
+              "value": "good",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "fantastic",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "really love",
+              "synonyms": []
