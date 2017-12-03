@@ -59,7 +59,7 @@ module.exports = {
       });
 
     });
-  }
+  },
 
   // Async update
   update: function(genre){
@@ -71,8 +71,8 @@ module.exports = {
         console.log('#####Triggered async update', url);
         // do some work here with the database.
         if(genre==="chillstep"){
-          var myquery = { username: "Daniel" };
-          var newvalues = { favorite.music.song: "floating"};
+          var myquery = { "username": "Daniel" };
+          var newvalues = {$set:{ "favorite.music.song": "floating"}};
           db.collection("Users").updateOne(myquery, newvalues, function(err, res) {
             if (err) throw err;
             console.log("1 document updated");
