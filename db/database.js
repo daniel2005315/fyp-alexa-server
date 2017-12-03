@@ -31,7 +31,7 @@ module.exports = {
     });
   },
 
-  findUser: function(){
+  find: function(field){
     return new Promise((resolve,reject)=>{
       MongoClient.connect(url, function (err, db) {
         if (err) {
@@ -40,7 +40,9 @@ module.exports = {
         } else {
           console.log('Connection established to', url);
           // do some work here with the database.
-          var cursor = db.collection('Users').find({},{username:1});
+          var query={};
+          query[field]=1;
+          var cursor = db.collection('Users').find({},query);
           cursor.each(function(err, item) {
 
             // If the item is null then the cursor is exhausted/empty and closed
