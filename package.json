@@ -18,6 +18,7 @@
   "dependencies": {
     "alexa-app-server": "^3.0.1",
     "chinese-tokenizer": "^0.1.2",
+    "mongodb": "^2.2.33",
     "natural": "^0.5.4",
     "pos": "^0.4.2",
     "sentiment": "^4.1.0"
