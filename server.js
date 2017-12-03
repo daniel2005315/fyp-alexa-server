@@ -18,9 +18,20 @@ var server = new AlexaAppServer({
 
 // Set up the data before server starts
 entityClassifier.init();
-database.connect(function(result){
-  console.log(result);
-})
+
+// Testing on database promise
+database.connect().then(function(result){
+  var status;
+  console.log("Progmise returned by resolved"+result);
+  if(result){
+    status='online';
+  }
+  else {
+    status='offline';
+  }
+  console.log("Database is: "+status);
+});
+
 // Test the training feature
 //entityClassifier.addToTraining(coffee,'coffee');
 

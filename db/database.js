@@ -11,21 +11,23 @@ var url = 'mongodb://myfriend:fypproject@ds127436.mlab.com:27436/fypserver';
 //(Focus on This Variable)
 
 module.exports = {
-  connect: function(callback){
-  // Use connect method to connect to the Server
-    MongoClient.connect(url, function (err, db) {
-      if (err) {
-        console.log('Unable to connect to the mongoDB server. Error:', err);
-        callback(false);
-      } else {
-        console.log('Connection established to', url);
+  // async function returning a promise
+  connect: function(){
+    return new Promise((resolve,reject)=>{
+      MongoClient.connect(url, function (err, db) {
+        if (err) {
+          console.log('Unable to connect to the mongoDB server. Error:', err);
+          reject(false);
+        } else {
+          console.log('Connection established to', url);
+          // do some work here with the database.
 
-        // do some work here with the database.
+          //Close connection
+          db.close();
+          resolve(true);
+        }
+      });
 
-        //Close connection
-        db.close();
-        callback(true);
-      }
     });
   }
 }
