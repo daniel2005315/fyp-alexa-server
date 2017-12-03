@@ -29,5 +29,33 @@ module.exports = {
       });
 
     });
+  },
+
+  findUser: function(){
+    return new Promise((resolve,reject)=>{
+      MongoClient.connect(url, function (err, db) {
+        if (err) {
+          console.log('Unable to connect to the mongoDB server. Error:', err);
+          reject(false);
+        } else {
+          console.log('Connection established to', url);
+          // do some work here with the database.
+          var cursor = db.collection('Users').find({},{username:1});
+          cursor.each(function(err, item) {
+
+            // If the item is null then the cursor is exhausted/empty and closed
+            if(item == null) {
+              // Show that the cursor is closed
+              db.close();
+              reject(false);
+            }else{
+              db.close();
+              resolve(item);
+            }
+          });
+        }
+      });
+
+    });
   }
 }
