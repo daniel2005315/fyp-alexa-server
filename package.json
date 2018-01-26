@@ -9,7 +9,7 @@
   "author": "daniel.leung",
   "license": "ISC",
   "engines": {
-    "node": "5.10.1"
+    "node": "8.9.2"
   },
   "repository": {
     "type": "git",
