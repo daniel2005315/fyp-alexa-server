@@ -1,6 +1,6 @@
 {
   "name": "fyp-alexa-app-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Self hosted alexa server",
   "main": "server.js",
   "scripts": {
