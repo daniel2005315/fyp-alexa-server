@@ -7,7 +7,7 @@ var database = require("./db/database.js");
 
 // 6-2-2018
 // Added for webhook with DialogFlow
-var bodyParser = require('bodyParser');
+//var bodyParser = require('bodyParser');
 
 
 var server = new AlexaAppServer({
@@ -39,8 +39,8 @@ database.connect().then(function(result){
 //entityClassifier.addToTraining(coffee,'coffee');
 
 // 6-2-2018
-server.use(bodyParser.urlencoded({extended:true}));
-server.use(bodyParser.json());
+//server.use(bodyParser.urlencoded({extended:true}));
+//server.use(bodyParser.json());
 
 server.start();
 // test express routing
