@@ -5,6 +5,9 @@ var sentiment_Analyser = require("./process/sAnalyse.js");
 var entityClassifier = require("./process/entityTrain.js");
 var database = require("./db/database.js");
 
+// 6-2-2018
+// Added for webhook with DialogFlow
+var bodyParser = require('bodyParser');
 
 
 var server = new AlexaAppServer({
@@ -34,6 +37,10 @@ database.connect().then(function(result){
 
 // Test the training feature
 //entityClassifier.addToTraining(coffee,'coffee');
+
+// 6-2-2018
+server.use(bodyParser.urlencoded({extended:true}));
+server.use(bodyParser.json());
 
 server.start();
 // test express routing
