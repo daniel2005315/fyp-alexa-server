@@ -23,6 +23,7 @@
     "natural": "^0.5.4",
     "pos": "^0.4.2",
     "sentiment": "^4.1.0",
+    "ssml-builder": "^0.4.3",
     "webworker-threads": "^0.7.13"
   }
 }
