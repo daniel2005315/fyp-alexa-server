@@ -57,7 +57,7 @@ server.express.use('/input', function(req,res){
 // Webhook for daily status
 server.express.post('/dailystatus', function(req,res){
     // log request details
-    console.log(req.body);
+    console.log(req);
     return res.json({
         speech: 'Webhook triggered',
         displayText: 'Nothing here',
