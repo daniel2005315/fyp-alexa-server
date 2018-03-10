@@ -61,8 +61,8 @@ server.express.post('/dailystatus', function(req,res){
     //console.log(req.body);
     //console.log("-------\n");
     //console.log(req.body.result);
-    console.log("try getting intent directly\n");
-    console.log(req.body.metadata.intentName);
+    console.log("meta-data************************8\n");
+    console.log(req.body.metadata);
     return res.json({
         speech: 'Webhook triggered',
         displayText: 'Nothing here',
