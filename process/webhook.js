@@ -15,7 +15,7 @@ module.exports = {
   // Match intent with intent handlers
   parse: async function(intent, req) {
     console.log("Intent routing");
-    if(input==='daily.user.status'){
+    if(intent==='daily.user.status'){
       let response;
       try{
         response = await dailyStatus(req);

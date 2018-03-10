@@ -68,11 +68,16 @@ server.express.post('/dailystatus', function(req,res){
     var intent = req.body.result.metadata.intentName;
 
     // 10-3-2018 call intent handler
-    var outputSpeech= handler.parse(intent, req);
+    let outputSpeech;
+    try{
+    outputSpeech= handler.parse(intent, req);
     console.log(outputSpeech);
-
+    }catch(err){
+      console.log(err);
+      outputSpeech='error';
+    }
     return res.json({
-        speech: 'Webhook triggered',
+        speech: outputSpeech,
         displayText: 'Nothing here',
         source: 'status-response'
     });
