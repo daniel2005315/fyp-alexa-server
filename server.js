@@ -61,8 +61,8 @@ server.express.post('/dailystatus', function(req,res){
     //console.log(req.body);
     //console.log("-------\n");
     //console.log(req.body.result);
-    console.log("req body************************8\n");
-    console.log(req.body);
+    console.log("meta data************************8\n");
+    console.log(req.body.result.metadata);
     return res.json({
         speech: 'Webhook triggered',
         displayText: 'Nothing here',
