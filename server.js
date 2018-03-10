@@ -56,7 +56,7 @@ server.express.use('/input', function(req,res){
 
 // 9-3-2018
 // Webhook for daily status
-server.express.post('/dailystatus', function(req,res){
+server.express.post('/dailystatus', async function(req,res){
     // log request details
     //console.log(req);
     //console.log(req.body);
@@ -70,7 +70,7 @@ server.express.post('/dailystatus', function(req,res){
     // 10-3-2018 call intent handler
     let outputSpeech;
     try{
-    outputSpeech= handler.parse(intent, req);
+    outputSpeech= await handler.parse(intent, req);
     console.log(outputSpeech);
     }catch(err){
       console.log(err);
