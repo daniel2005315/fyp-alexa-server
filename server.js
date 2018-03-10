@@ -4,6 +4,7 @@ var AlexaAppServer = require("alexa-app-server");
 var sentiment_Analyser = require("./process/sAnalyse.js");
 var entityClassifier = require("./process/entityTrain.js");
 var database = require("./db/database.js");
+var handler = require("./process/webhook.js");
 
 // 6-2-2018
 // Added for webhook with DialogFlow
@@ -62,7 +63,9 @@ server.express.post('/dailystatus', function(req,res){
     //console.log("-------\n");
     //console.log(req.body.result);
     console.log("meta data************************8\n");
-    console.log(req.body.result.metadata);
+    console.log(req.body.result.metadata.intentName);
+    var intent = req.body.result.metadata.intentName;
+
     return res.json({
         speech: 'Webhook triggered',
         displayText: 'Nothing here',
