@@ -56,7 +56,7 @@ server.express.use('/input', function(req,res){
 
 // 9-3-2018
 // Webhook for daily status
-server.express.post('/dailystatus', async function(req,res){
+server.express.post('/webhook', async function(req,res){
     // log request details
     //console.log(req);
     //console.log(req.body);
