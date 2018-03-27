@@ -1,0 +1,34 @@
+<%# This is a EJS comment %>
+<%# "locals" is the object containing the properties passed from
+    res.render(). A property named 'username' can be referenced
+    in two ways
+    (A) As 'username' directly provided it is not undefined
+    (B) As 'locals.username'
+%>
+<%
+  // Set default values
+  locals.username = locals.username || "";
+  locals.loginMsg = locals.loginMsg || "";
+  locals.user = locals.user || null;
+%>
+<%- include header.ejs %>
+
+  <div class="container" id=content>
+    <form action="/login" method=post >
+      <div class="form-group mt-5 mx-auto" style="max-width: 300px;">
+      <label class="col-form-label" for="username">Username</label>
+      <input class="form-control" id="username" name=uname value="<%= username %>"><br>
+      <label class="col-form-label" for="password">Password</label>
+      <input class="form-control" id="password" type=password name=pword><br>
+      <input class="btn btn-primary" type=submit value="Login"><br>
+      </div>
+    </form>
+
+    <hr>
+    <% if (loginMsg) { %>
+      <div class="alert alert-warning" role="alert">
+          <%= loginMsg %>
+      </div>
+    <% } %>
+
+  </div>

@@ -41,7 +41,6 @@ database.connect().then(function(result){
 //entityClassifier.addToTraining(coffee,'coffee');
 
 
-
 server.start();
 
 // 6-2-2018
