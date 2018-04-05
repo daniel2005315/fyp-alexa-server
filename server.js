@@ -6,9 +6,8 @@ var entityClassifier = require("./process/entityTrain.js");
 var database = require("./db/database.js");
 var handler = require("./process/webhook.js");
 
-// 6-2-2018
-// Added for webhook with DialogFlow
-var bodyParser = require('body-parser');
+
+
 
 
 var server = new AlexaAppServer({
@@ -17,8 +16,6 @@ var server = new AlexaAppServer({
   port: process.env.PORT||8080,
 
 });
-
-
 
 // Set up the data before server starts
 // 19-2-2018 Disable the classifier
@@ -42,10 +39,10 @@ database.connect().then(function(result){
 
 
 server.start();
-
-// 6-2-2018
-server.express.use(bodyParser.urlencoded({extended:true}));
-server.express.use(bodyParser.json());
+// ask user to login if not
+// *** Google Oauth2 API Keys
+// # Client ID: 115422974852-ppcqqt3s258bicmqgmk5nocdu4peo83f.apps.googleusercontent.com
+// # Client Secret: m3cWBP3-uD3EjSf6lleyt96Z
 // test express routing
 server.express.use('/input', function(req,res){
   console.log(req);
