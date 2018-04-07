@@ -53,7 +53,7 @@ passport.use(new GoogleStrategy({
 }, (accessToken, refreshToken, profile, cb) => {
   // Extract the minimal profile information we need from the profile object
   // provided by Google
-  console.log("[passport.use GoogleStrategy] Call back\n");
+  console.log("[passport.use GoogleStrategy] passport authen returned\n");
   console.log(accessToken);
   console.log(refreshToken);
   console.log(profile);
@@ -111,6 +111,13 @@ router.get(
   // Save the url of the user's current page so the app can redirect back to
   // it after authorization
   (req, res, next) => {
+    console.log("[auth/login] GET started");
+    // TODO Handle the case where request is from Alexa
+    if(req.query.redirect_uri){
+      console.log("Access from Alexa skill with redirect uri");
+    }else{
+      console.log("NO redirect_uri embeded, should be from web app");
+    }
     if (req.query.return) {
       req.session.oauth2return = req.query.return;
     }
@@ -133,8 +140,14 @@ router.get(
 
   // Redirect back to the original page, if any
   (req, res) => {
-    // TODO Try logging user info
-    console.log(req.session);
+    console.log("[callback] Started");
+    // TODO try log code returned from Google (should be authorization code)
+    if(req.query.code)
+      console.log("***Got code: "+req.query.code);
+    else {
+      console.log("No code")
+    }
+    
     const redirect = req.session.oauth2return || '/';
     delete req.session.oauth2return;
     res.redirect(redirect);
