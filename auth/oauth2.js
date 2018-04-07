@@ -158,7 +158,7 @@ router.get(
       console.log("No code")
     }
 
-    const redirect = req.session.oauth2return || '/';
+    var redirect = req.session.oauth2return || '/';
     // TODO Construct the redirect link for Alexa
     if(req.session.alexa_redirect){
       redirect=req.session.alexa_redirect;
