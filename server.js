@@ -3,12 +3,8 @@
 var AlexaAppServer = require("alexa-app-server");
 var sentiment_Analyser = require("./process/sAnalyse.js");
 var entityClassifier = require("./process/entityTrain.js");
-var database = require("./db/database.js");
+// var database =
 var handler = require("./process/webhook.js");
-
-
-
-
 
 var server = new AlexaAppServer({
   server_root: './',
@@ -20,8 +16,9 @@ var server = new AlexaAppServer({
 // Set up the data before server starts
 // 19-2-2018 Disable the classifier
 //entityClassifier.init();
-
+require("./db/database.js");
 // Testing on database promise
+/*
 database.connect().then(function(result){
   var status;
   console.log("Progmise returned by resolved"+result);
@@ -33,6 +30,7 @@ database.connect().then(function(result){
   }
   console.log("Database is: "+status);
 });
+*/
 
 // Test the training feature
 //entityClassifier.addToTraining(coffee,'coffee');

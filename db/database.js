@@ -1,14 +1,30 @@
 //lets require/import the mongodb native drivers.
 var mongodb = require('mongodb');
 
+// Added mongoose for Schema
+var mongoose = require('mongoose');
 //We need to work with "MongoClient" interface in order to connect to a mongodb server.
-var MongoClient = mongodb.MongoClient;
+//var MongoClient = mongodb.MongoClient;
 
+// We use mongoose to stay connected instead
+mongoose.Promise = global.Promise;
 // Connection URL. This is where your mongodb server is running.
 
 //(Focus on This Variable)
 var url = 'mongodb://myfriend:fypproject@ds127436.mlab.com:27436/fypserver';
 //(Focus on This Variable)
+// Global db connect
+mongoose.connect(url);
+var db = mongoose.connection;
+
+db.on('error', function(err){
+  console.log("[database]db connection error, cannot connect to db");
+});
+
+db.once('open', function(){
+  console.log("[database] Connected to",url);
+})
+
 
 module.exports = {
   // async function returning a promise
