@@ -20,6 +20,10 @@ const express = require('express');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
+// Indicate login from
+// 0: Web
+// 1: Alexa skill
+var access=0;
 // 5-4-2018 Pass along the accessToken as well
 function extractProfile (profile,accessToken) {
   let imageUrl = '';
@@ -115,8 +119,14 @@ router.get(
     // TODO Handle the case where request is from Alexa
     if(req.query.redirect_uri){
       console.log("Access from Alexa skill with redirect uri");
+      access = 1;
+      req.session.alexa_state=req.query.state;
+      req.session.alexa_redirect = req.query.redirect_uri;
+      console.log("***Save Alexa auth state as: "+req.session.alexa_state);
+      console.log ("***Set alexa_redirect to: "+req.session.alexa_redirect);
     }else{
       console.log("NO redirect_uri embeded, should be from web app");
+      access = 0;
     }
     if (req.query.return) {
       req.session.oauth2return = req.query.return;
@@ -147,8 +157,16 @@ router.get(
     else {
       console.log("No code")
     }
-    
+
     const redirect = req.session.oauth2return || '/';
+    // TODO Construct the redirect link for Alexa
+    if(req.session.alexa_redirect){
+      redirect=req.session.alexa_redirect;
+      // Pass along the state and authorization code
+      // May need to add  "?"
+      redirect=redirect+"&state="+req.session.alexa_state+"&code="+req.query.code;
+    }
+    console.log("Logging the redirect path: "+redirect);
     delete req.session.oauth2return;
     res.redirect(redirect);
   }
@@ -169,6 +187,7 @@ router.get(
   (req, res) => {
     // TODO Try logging user info
     console.log(req.user);
+
     res.send(req.user.accessToken);
   }
 );
