@@ -164,8 +164,15 @@ router.get(
       redirect=req.session.alexa_redirect;
       // Pass along the state and authorization code
       // May need to add  "?"
-      redirect=redirect+"?state="+req.session.alexa_state+"&code="+req.query.code;
+      //redirect=redirect+"?state="+req.session.alexa_state+"&code="+req.query.code;
+
+      // TODO Use impplicit grant instead
+      // state + access_token, token_type
+      // Use query code as access token for now
+      redirect=redirect+"#state="+req.session.alexa_state+"&access_token="+req.query.code+"&token_type=Bearer";
+
     }
+
     console.log("Logging the redirect path: "+redirect);
     delete req.session.oauth2return;
     res.redirect(redirect);
