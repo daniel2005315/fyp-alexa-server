@@ -164,7 +164,7 @@ router.get(
       redirect=req.session.alexa_redirect;
       // Pass along the state and authorization code
       // May need to add  "?"
-      redirect=redirect+"&state="+req.session.alexa_state+"&code="+req.query.code;
+      redirect=redirect+"?state="+req.session.alexa_state+"&code="+req.query.code;
     }
     console.log("Logging the redirect path: "+redirect);
     delete req.session.oauth2return;
