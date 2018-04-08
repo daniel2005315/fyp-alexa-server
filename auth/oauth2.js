@@ -159,14 +159,14 @@ router.get(
     }
 
     var redirect = req.session.oauth2return || '/';
-    // TODO Construct the redirect link for Alexa
+    // Construct the redirect link for Alexa
     if(req.session.alexa_redirect){
       redirect=req.session.alexa_redirect;
       // Pass along the state and authorization code
       // May need to add  "?"
       //redirect=redirect+"?state="+req.session.alexa_state+"&code="+req.query.code;
 
-      // TODO Use impplicit grant instead
+      // ***Use impplicit grant instead
       // state + access_token, token_type
       // Use query code as access token for now
       redirect=redirect+"#state="+req.session.alexa_state+"&access_token="+req.query.code+"&token_type=Bearer";
@@ -174,6 +174,9 @@ router.get(
     }
 
     console.log("Logging the redirect path: "+redirect);
+    // TODO: Check if user email can be retrieved here for database update
+    console.log("[auth callback end]");
+    console.log(req.user); 
     delete req.session.oauth2return;
     res.redirect(redirect);
   }

@@ -100,8 +100,19 @@ async function getItem(id) {
   return result;
 }
 
+// Find if the user exists
+// Uniquely identify an user by email
+async function findUser(email) {
+  let result = await User.
+    findOne( {email: email} ).
+    populate('username'). // only return the username
+    exec();
+  return result;
+}
+
 // Place holder for authentication
 function authenticate(username, password) {
+
   return (username === 'john' && password === '123');
 }
 
@@ -110,5 +121,6 @@ module.exports = {
   Item: Item,
   authenticate: authenticate,
   getItems: getItems,
-  getItem: getItem
+  getItem: getItem,
+  findUser: findUser
 }
