@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
 var UserSchema = Schema({
-  username: { type: String, required: true, unique: true },
+  username: { type: String, required: false, unique: true },
   email: { type: String, unique: true, required: true },
   access_token:{type:String,unique:true,required:true},
   password: { type: String, required: false }
@@ -116,11 +116,30 @@ function authenticate(username, password) {
   return (username === 'john' && password === '123');
 }
 
+// Add new entry for user
+async function addUser(email, access_token){
+
+  var user= new User({
+    email: email,
+    access_token:access_token
+  });
+
+  try{
+    let result = await User.save();
+    console.log(result);
+    return result;
+  }catch(err){
+    console.log(err);
+    return false;
+  }
+}
+
 module.exports = {
   User: User,
   Item: Item,
   authenticate: authenticate,
   getItems: getItems,
   getItem: getItem,
-  findUser: findUser
+  findUser: findUser,
+  addUser: addUser
 }
