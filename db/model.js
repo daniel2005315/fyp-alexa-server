@@ -7,7 +7,7 @@ let ObjectId = Schema.Types.ObjectId;
 var UserSchema = Schema({
   username: { type: String, required: false, unique: true },
   email: { type: String, unique: true, required: true },
-  access_token:{type:String,unique:true,required:true},
+  access_token:{type:Number,unique:true,required:true},
   password: { type: String, required: false }
 });
 
@@ -101,11 +101,21 @@ async function getItem(id) {
 }
 
 // Find if the user exists
-// Uniquely identify an user by email
-async function findUser(email) {
+// Uniquely identify an user by accessToken
+async function findUser(access_token) {
+  let result = await User.
+    findOne( {access_token: access_token} ).
+    populate('username'). // return the username
+    exec();
+  return result;
+}
+
+// Find if the user exists by Email
+// Uniquely identify an user by accessToken
+async function findUserEmail(email) {
   let result = await User.
     findOne( {email: email} ).
-    populate('username'). // only return the username
+    populate('username'). // return the username
     exec();
   return result;
 }
@@ -125,7 +135,7 @@ async function addUser(email, access_token){
   });
 
   try{
-    let result = await User.save();
+    let result = await user.save();
     console.log(result);
     return result;
   }catch(err){
@@ -141,5 +151,6 @@ module.exports = {
   getItems: getItems,
   getItem: getItem,
   findUser: findUser,
+  findUserEmail: findUserEmail,
   addUser: addUser
 }

@@ -20,6 +20,9 @@ const express = require('express');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
+// For accessing db model
+var model = require.main.require('./db/model.js');
+
 // Indicate login from
 // 0: Web
 // 1: Alexa skill
@@ -51,25 +54,45 @@ passport.use(new GoogleStrategy({
   clientID: '115422974852-ppcqqt3s258bicmqgmk5nocdu4peo83f.apps.googleusercontent.com',
   clientSecret: 'm3cWBP3-uD3EjSf6lleyt96Z',
   // Change callback url to heroku when deployed
-  // callbackURL: 'http://localhost:8080/auth/google/callback
-  callbackURL: 'https://alexa-server-ck.herokuapp.com/auth/google/callback',
+  callbackURL: 'http://localhost:8080/auth/google/callback',
+  //callbackURL: 'https://alexa-server-ck.herokuapp.com/auth/google/callback',
   accessType: 'offline'
 }, (accessToken, refreshToken, profile, cb) => {
   // Extract the minimal profile information we need from the profile object
   // provided by Google
   console.log("[passport.use GoogleStrategy] passport authen returned\n");
-  console.log(accessToken);
-  console.log(refreshToken);
+  // in profile, there are the following:
+  // id, displayName, names{familyName,givenName}, emails,gender
   console.log(profile);
-  cb(null, extractProfile(profile,accessToken));
+  // May pass accessToken for usage
+  cb(null, extractProfile(profile));
 }));
 
 // 5-4-2018 Add accesstoken generation for testing
 // TODO may add custom access token for storage in db to indicate user
-passport.serializeUser((user, cb) => {
+passport.serializeUser(async (user, cb) => {
   console.log('[passport.serializeUser] Started');
   console.log(user);
-  cb(null, user);
+  // check email in database, if not exists, generate token and create user in db
+  // use accessToken (ID) to identify user Uniquely
+  // TODO: working on this part
+  try{
+    let result = await model.findUserEmail(user.email);
+    if(result!=null){
+      console.log("user exists");
+    }else {
+      console.log("user not in db yet, create user");
+      // Generate token for user
+      // Hard code number 101 for Now
+      let result = await model.addUser(user.email,101);
+      // Success, bind user with token
+      user.accessToken=101;
+      console.log(result);
+    }
+    cb(null, user);
+  }catch(err){
+    console.log(err);
+  }
 });
 passport.deserializeUser((obj, cb) => {
   cb(null, obj);
@@ -151,11 +174,11 @@ router.get(
   // Redirect back to the original page, if any
   (req, res) => {
     console.log("[callback] Started");
-    // TODO try log code returned from Google (should be authorization code)
-    if(req.query.code)
-      console.log("***Got code: "+req.query.code);
-    else {
-      console.log("No code")
+    // TODO try access user
+    if(req.user!=null){
+      var token=req.user.accessToken;
+      console.log("Binding token to call back link");
+
     }
 
     var redirect = req.session.oauth2return || '/';
@@ -169,14 +192,15 @@ router.get(
       // ***Use impplicit grant instead
       // state + access_token, token_type
       // Use query code as access token for now
-      redirect=redirect+"#state="+req.session.alexa_state+"&access_token="+req.query.code+"&token_type=Bearer";
+      // TODO: Return accessToken in db
+      redirect=redirect+"#state="+req.session.alexa_state+"&access_token="+token+"&token_type=Bearer";
 
     }
 
     console.log("Logging the redirect path: "+redirect);
     // TODO: Check if user email can be retrieved here for database update
     console.log("[auth callback end]");
-    console.log(req.user); 
+    console.log(req.user);
     delete req.session.oauth2return;
     res.redirect(redirect);
   }
