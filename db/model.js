@@ -112,10 +112,10 @@ async function findUser(access_token) {
 
 // Find if the user exists by Email
 // Uniquely identify an user by accessToken
-async function findUserEmail(email) {
+async function findUserByEmail(email) {
   let result = await User.
     findOne( {email: email} ).
-    populate('username'). // return the username
+    populate('access_token'). // return the token
     exec();
   return result;
 }
@@ -151,6 +151,6 @@ module.exports = {
   getItems: getItems,
   getItem: getItem,
   findUser: findUser,
-  findUserEmail: findUserEmail,
+  findUserByEmail: findUserByEmail,
   addUser: addUser
 }

@@ -77,9 +77,11 @@ passport.serializeUser(async (user, cb) => {
   // use accessToken (ID) to identify user Uniquely
   // TODO: working on this part
   try{
-    let result = await model.findUserEmail(user.email);
-    if(result!=null){
+    let token = await model.findUserByEmail(user.email);
+    if(token!=null){
+      // TODO: If user exists, bind accessToken from DB to user
       console.log("user exists");
+      user.accessToken=token;
     }else {
       console.log("user not in db yet, create user");
       // Generate token for user
