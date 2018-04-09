@@ -54,8 +54,8 @@ passport.use(new GoogleStrategy({
   clientID: '115422974852-ppcqqt3s258bicmqgmk5nocdu4peo83f.apps.googleusercontent.com',
   clientSecret: 'm3cWBP3-uD3EjSf6lleyt96Z',
   // Change callback url to heroku when deployed
-  callbackURL: 'http://localhost:8080/auth/google/callback',
-  //callbackURL: 'https://alexa-server-ck.herokuapp.com/auth/google/callback',
+  //callbackURL: 'http://localhost:8080/auth/google/callback',
+  callbackURL: 'https://alexa-server-ck.herokuapp.com/auth/google/callback',
   accessType: 'offline'
 }, (accessToken, refreshToken, profile, cb) => {
   // Extract the minimal profile information we need from the profile object
