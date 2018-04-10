@@ -171,10 +171,10 @@ async function getUserID(access_token) {
 // Return the access_token of user
 async function findUserByEmail(email) {
   let result = await User.
-    findOne( {"email": email} ).
-    select('access_token'). // return the token
-    exec();
-  return result;
+    findOne( {"email": email} ).exec();
+     // return the token
+
+  return result.access_token;
 }
 
 // Find user's record of the day

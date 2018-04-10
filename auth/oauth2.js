@@ -72,12 +72,12 @@ passport.use(new GoogleStrategy({
 // TODO may add custom access token for storage in db to indicate user
 passport.serializeUser(async (user, cb) => {
   console.log('[passport.serializeUser] Started');
-  console.log(user);
   // check email in database, if not exists, generate token and create user in db
   // use accessToken (ID) to identify user Uniquely
   // TODO: working on this part
   try{
     let token = await model.findUserByEmail(user.email);
+    console.log(token);
     if(token!=null){
       // TODO: If user exists, bind accessToken from DB to user
       console.log("user exists");
