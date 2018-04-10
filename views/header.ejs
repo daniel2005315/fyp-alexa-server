@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>
-      <%= (title ? title : "The Witch Doctor") %>
+      <%= (title ? title : "Ulala") %>
   </title>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
@@ -24,13 +24,14 @@
   // Set default values
   locals.user = locals.user || "";
   locals.userData = locals.userData || "";
+  locals.ptitle = locals.ptitle || "Ulala";
 %>
 
 <body>
-  <div id=head>
+  <div id="head">
     <!-- HTML code for header, including navigation bar, goes here -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-    <a class="navbar-brand" href="#">The Witch Doctor</a>
+    <a class="navbar-brand" href="#"><%= ptitle %></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

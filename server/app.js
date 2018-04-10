@@ -49,6 +49,8 @@ module.exports = function(express,alexaAppServerObject) {
 	// Check for login before proceeding to chat page
 	express.use('/chat', oauth2.required, (req, res, next) =>{
     // TODO Check
+    res.locals.ptitle="Let's chat!";
     res.render('chat.ejs',{title:"Let's chat!"});
+
 	})
 };
