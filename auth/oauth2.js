@@ -180,7 +180,6 @@ router.get(
     if(req.user!=null){
       var token=req.user.accessToken;
       console.log("Binding token to call back link");
-
     }
 
     var redirect = req.session.oauth2return || '/';
