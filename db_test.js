@@ -2,6 +2,8 @@
 
 var model = require('./db/model.js');
 
+var request= require('request');
+
 require('./db/database.js');
 console.log("Test the Database access");
 
@@ -18,6 +20,21 @@ Date.prototype.yyyymmdd = function() {
 
 // for getting date as yyyymmdd format
 var date = new Date();
+
+function doRequest(url) {
+  return new Promise(function (resolve, reject) {
+    request(url, function (error, res, body) {
+      if (!error && res.statusCode == 200) {
+				console.log("[doRequest]res received");
+        resolve(body);
+      } else {
+				console.log("Status code:"+res.statusCode);
+				console.log("[doRequest]rejected, error=>"+error);
+        reject(error);
+      }
+    });
+  });
+}
 
 async function runTest(){
   try{
@@ -47,6 +64,37 @@ async function runTest(){
     let user_obj = await model.getUserTodaysRecord(101);
 
 
+  }catch(err){
+    console.log(err);
+  }
+
+  var user_context={
+    "lifespan": 3,
+    "name": "message_info",
+    "parameters": {
+      "name": "Peter",
+      "message": "Hello"
+    }
+  };
+
+  // options
+  options = {
+    headers: {"Authorization": "Bearer d25cbadf552a43eba0ed4d4905e98858"},
+      url: 'https://api.dialogflow.com/v1/query?v=20150910',
+      method: 'POST',
+      json:true,
+      body: {
+        "contexts":[user_context],
+        "lang": "en",
+        "sessionId": "12345",
+        // init event, empty query
+        "event":{"name": "line_message"}
+      }
+  };
+  try{
+    let res = await doRequest(options);
+    console.log("response result=>\n");
+    console.log(res.result);
   }catch(err){
     console.log(err);
   }
