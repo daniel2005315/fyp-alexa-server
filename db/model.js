@@ -149,22 +149,40 @@ async function getItem(id) {
 
 // Find if the user exists
 // Uniquely identify an user by accessToken
-async function findUser(access_token) {
+async function getUserName(access_token) {
   let result = await User.
     findOne( {access_token: access_token} ).
-    populate('username'). // return the username
     exec();
-  return result;
+  return result.username;
 }
 
 async function getUserID(access_token) {
-  let result = await User.
-    findOne( {
-      "access_token": access_token,
-    } ).
-    exec();
+  try{
+    console.log("Finding with ",access_token);
+    let result = await User.
+      findOne( {
+        "access_token": access_token,
+      } ).
+      exec();
+    console.log(result);
+    return result._id;
+  }catch(err){
+    console.log("[getUserID]err ",err);
+  }
 
-  return result._id;
+}
+// Find if user exists by token
+async function findUser(access_token){
+  try{
+    let result = await User.
+      findOne( {
+        "access_token": access_token,
+      } ).
+      exec();
+    return result;
+  }catch(err){
+    console.log("[findUser] err ",err);
+  }
 }
 
 // Find if the user exists by Email
@@ -177,35 +195,83 @@ async function findUserByEmail(email) {
   return result.access_token;
 }
 
-// Find user's record of the day
-async function findUserDailyRecord(access_token,yyyymmdd) {
-  let result = await Record.
-    findOne( {
-      "access_token": access_token,
-      "date": yyyymmdd
-    } ).
-    exec();
+
+// Update user info
+async function updateUser(access_token, fieldname, value){
+  var updateparam = {};
+  updateparam[fieldname] = value;
+  let result = await User.
+    findOneAndUpdate({"access_token": access_token},
+      {$set:updateparam},{new:true}).exec();
   return result;
 }
 
-// TODO
-async function createDailyRecord(access_token,yyyymmdd) {
+// Find user's record of the day
+// populate result with user info
+async function findUserDailyRecord(access_token,yyyymmdd) {
   try{
     let userID = await getUserID(access_token);
-    console.log(userID);
+    let result = await Record.
+      findOne( {
+        "owner": userID,
+        "date": yyyymmdd
+      } ).populate('owner').
+      exec();
+      console.log("[findUserDailyRecord]");
+      console.log(result);
+    return result;
+  }catch(err){
+    console.log("[findUserDailyRecord] err ",err);
+  }
+}
+
+// TODO
+// populate result with user info
+async function createDailyRecord(access_token,yyyymmdd) {
+  try{
+    let user = await findUser(access_token);
+    console.log(user);
     var record= new Record({
-      owner: userID,
+      owner: user._id,
       count:0,
       avg_sentiment_score:0,
-      // TODO: May cause problem
       status:[new Status()]
     });
+    // TODO: may not work
     let result = await record.save();
+    result.owner=user;
+    console.log("CHECK***");
+    console.log(result);
+
     return result;
   }catch(err){
     console.log(err);
     return -1;
   }
+}
+
+// Return user object, with record object and user names
+async function getUserTodaysRecord(accessToken){
+	let user = {
+		"name":"",
+		"record":{}
+	};
+	try{
+    console.log("Get user record started->",accessToken);
+		let record = await findUserDailyRecord(accessToken,date.yyyymmdd());
+    console.log(record);
+    if(record==null){
+			console.log("[checkDailyRecord] Create record for today");
+			record = await createDailyRecord(accessToken,date.yyyymmdd());
+		}
+    user.record=record;
+    user.name=record.owner.username;
+    console.log("User");
+    console.log(user);
+    return user;
+	}catch(err){
+		console.log("[checkDailyRecord] error", err);
+	}
 }
 
 
@@ -241,8 +307,11 @@ module.exports = {
   getItems: getItems,
   getItem: getItem,
   findUser: findUser,
+  getUserName: getUserName,
   findUserByEmail: findUserByEmail,
+  updateUser: updateUser,
   findUserDailyRecord: findUserDailyRecord,
   createDailyRecord: createDailyRecord,
+  getUserTodaysRecord: getUserTodaysRecord,
   addUser: addUser
 }

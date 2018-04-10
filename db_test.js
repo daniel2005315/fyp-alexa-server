@@ -30,15 +30,50 @@ async function runTest(){
 
     // Get record and check Date
     // try create record
-    let record = await model.findUserDailyRecord(date.yyyymmdd());
+    let record = await model.findUserDailyRecord(101,date.yyyymmdd());
     if(record==null){
       console.log("Create record");
       let result = await model.createDailyRecord(101,date.yyyymmdd());
       console.log(result);
     }
+
+
+    // Find and update user info
+    let newuser = await model.updateUser(101,"username","Daniel");
+    console.log(newuser);
+
+    // Get user record for TODAY, if the record does not
+    // exists, create it
+    let user_obj = await model.getUserTodaysRecord(101);
+
+
   }catch(err){
     console.log(err);
   }
 }
-
+/*
+// Return user object, with record object and user names
+async function getUserRecord(accessToken,recordDate){
+	let user = {
+		"name":"",
+		"record":{}
+	};
+	try{
+    console.log("Get user record started->",accessToken);
+		let record = await model.findUserDailyRecord(accessToken,recordDate);
+    console.log(record);
+    if(record==null){
+			console.log("[checkDailyRecord] Create record for today");
+			record = await model.createDailyRecord(accessToken,date.yyyymmdd());
+		}
+    user.record=record;
+    user.name=record.owner.username;
+    console.log("User");
+    console.log(user);
+    return user;
+	}catch(err){
+		console.log("[checkDailyRecord] error", err);
+	}
+}
+*/
 runTest();
