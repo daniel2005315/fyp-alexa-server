@@ -124,4 +124,35 @@ async function getUserRecord(accessToken,recordDate){
 	}
 }
 */
-runTest();
+
+async function updateDB2(){
+  // try async update DB
+  try{
+    let result = await model.getUserTodaysRecord(101);
+    console.log(result);
+    console.log("async update started");
+    model.updateUserDailyRecord(101,"count",0);
+    console.log("*** this line will display first before the update completed");
+
+    // update User to elderly
+
+  }catch(err){
+    console.log("err ",err );
+  }
+}
+
+// update User to elderly
+async function updateDB(){
+  // try async update DB
+  try{
+    console.log("async update started");
+    model.updateUserInfo(101,"usr_type","elder");
+    console.log("*** this line will display first before the update completed");
+
+  }catch(err){
+    console.log("err ",err );
+  }
+}
+
+//runTest();
+updateDB2();

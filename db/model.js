@@ -274,6 +274,45 @@ async function getUserTodaysRecord(accessToken){
 	}
 }
 
+// Update a field in user's daily record
+// This should only be called when daily record already exists
+// It runs async
+async function updateUserDailyRecord(accessToken, field, value){
+  try{
+    // get the user record
+    let record = await findUserDailyRecord(accessToken,date.yyyymmdd());
+
+    var id = record._id;
+    console.log("[updateUserDailyRecord] record id ",id);
+    let _id = new mongoose.Types.ObjectId(id);
+
+    var updateparam = {};
+    updateparam[field] = value;
+    let result = await Record.
+      findOneAndUpdate({_id: _id},
+        {$set:updateparam},{new:true}).exec();
+    console.log("[updateUserDailyRecord] update result: ", result);
+
+  }catch(err){
+    console.log("[updateUserDailyRecord] err ",err);
+  }
+}
+
+async function updateUserInfo(accessToken, field, value){
+  try{
+    var updateparam = {};
+    updateparam[field] = value;
+
+    let result = await User.
+      findOneAndUpdate({access_token: accessToken},
+        {$set:updateparam},{new:true}).exec();
+    console.log("[updateUserInfo] update result: ", result);
+
+  }catch(err){
+    console.log("[updateUserInfo] err ",err);
+  }
+}
+
 
 // Place holder for authentication
 function authenticate(username, password) {
@@ -310,8 +349,10 @@ module.exports = {
   getUserName: getUserName,
   findUserByEmail: findUserByEmail,
   updateUser: updateUser,
+  updateUserInfo: updateUserInfo,
   findUserDailyRecord: findUserDailyRecord,
   createDailyRecord: createDailyRecord,
   getUserTodaysRecord: getUserTodaysRecord,
+  updateUserDailyRecord: updateUserDailyRecord,
   addUser: addUser
 }
