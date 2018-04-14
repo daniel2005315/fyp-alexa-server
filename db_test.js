@@ -153,6 +153,19 @@ async function updateDB(){
     console.log("err ",err );
   }
 }
+// update User to elderly
+async function updateDB(){
+  // try async update DB
+  try{
+    console.log("async update started");
+    model.updateUserInfo(101,"usr_type","elder");
+    console.log("*** this line will display first before the update completed");
+
+  }catch(err){
+    console.log("err ",err );
+  }
+}
+
 
 //runTest();
 updateDB2();
