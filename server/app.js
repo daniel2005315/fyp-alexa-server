@@ -58,7 +58,8 @@ module.exports = function(express,alexaAppServerObject) {
   express.post('/webhook', function (req,res){
     // take req json
     console.log('[webhoook] Triggered')
-    console.log(req.result);
+    // req.result gives undefined
+    console.log(req);
     // TODO parse JSON for
     // 1. intent
 
