@@ -55,7 +55,7 @@ module.exports = function(express,alexaAppServerObject) {
 	})
 
   // TODO: webhook for fulfillment
-  express.post('/webhook', (req,res,){
+  express.post('/webhook', function (req,res){
     // take req json
     console.log('[webhoook] Triggered')
     console.log(req);
