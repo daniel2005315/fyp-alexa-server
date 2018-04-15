@@ -53,4 +53,17 @@ module.exports = function(express,alexaAppServerObject) {
     res.render('chat.ejs',{title:"Let's chat!"});
 
 	})
+
+  // TODO: webhook for fulfillment
+  express.post('/webhook', (req,res,){
+    // take req json
+    console.log('[webhoook] Triggered')
+    console.log(req);
+    // TODO parse JSON for
+    // 1. intent
+    // 2. action
+    // 3. param
+  });
+
+
 };
