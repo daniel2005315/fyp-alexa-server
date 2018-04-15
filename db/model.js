@@ -158,13 +158,13 @@ async function getUserName(access_token) {
 
 async function getUserID(access_token) {
   try{
-    console.log("Finding with ",access_token);
+    //console.log("Finding with ",access_token);
     let result = await User.
       findOne( {
         "access_token": access_token,
       } ).
       exec();
-    console.log(result);
+    //console.log(result);
     return result._id;
   }catch(err){
     console.log("[getUserID]err ",err);
@@ -217,8 +217,8 @@ async function findUserDailyRecord(access_token,yyyymmdd) {
         "date": yyyymmdd
       } ).populate('owner').
       exec();
-      console.log("[findUserDailyRecord]");
-      console.log(result);
+      //console.log("[findUserDailyRecord]");
+      //console.log(result);
     return result;
   }catch(err){
     console.log("[findUserDailyRecord] err ",err);
@@ -230,7 +230,7 @@ async function findUserDailyRecord(access_token,yyyymmdd) {
 async function createDailyRecord(access_token,yyyymmdd) {
   try{
     let user = await findUser(access_token);
-    console.log(user);
+    //console.log(user);
     var record= new Record({
       owner: user._id,
       count:0,
@@ -240,8 +240,8 @@ async function createDailyRecord(access_token,yyyymmdd) {
     // TODO: may not work
     let result = await record.save();
     result.owner=user;
-    console.log("CHECK***");
-    console.log(result);
+    //console.log("CHECK***");
+    //console.log(result);
 
     return result;
   }catch(err){
@@ -257,17 +257,17 @@ async function getUserTodaysRecord(accessToken){
 		"record":{}
 	};
 	try{
-    console.log("Get user record started->",accessToken);
+    //console.log("Get user record started->",accessToken);
 		let record = await findUserDailyRecord(accessToken,date.yyyymmdd());
-    console.log(record);
+    //console.log(record);
     if(record==null){
-			console.log("[checkDailyRecord] Create record for today");
+			//console.log("[checkDailyRecord] Create record for today");
 			record = await createDailyRecord(accessToken,date.yyyymmdd());
 		}
     user.record=record;
     user.name=record.owner.username;
-    console.log("User");
-    console.log(user);
+    //console.log("User");
+    //console.log(user);
     return user;
 	}catch(err){
 		console.log("[checkDailyRecord] error", err);
@@ -283,7 +283,7 @@ async function updateUserDailyRecord(accessToken, field, value){
     let record = await findUserDailyRecord(accessToken,date.yyyymmdd());
 
     var id = record._id;
-    console.log("[updateUserDailyRecord] record id ",id);
+    //console.log("[updateUserDailyRecord] record id ",id);
     let _id = new mongoose.Types.ObjectId(id);
 
     var updateparam = {};
@@ -291,7 +291,7 @@ async function updateUserDailyRecord(accessToken, field, value){
     let result = await Record.
       findOneAndUpdate({_id: _id},
         {$set:updateparam},{new:true}).exec();
-    console.log("[updateUserDailyRecord] update result: ", result);
+    //console.log("[updateUserDailyRecord] update result: ", result);
 
   }catch(err){
     console.log("[updateUserDailyRecord] err ",err);
@@ -330,7 +330,7 @@ async function addUser(email, access_token){
 
   try{
     let result = await user.save();
-    console.log(result);
+    //console.log(result);
     return result;
   }catch(err){
     console.log(err);

@@ -58,9 +58,10 @@ module.exports = function(express,alexaAppServerObject) {
   express.post('/webhook', function (req,res){
     // take req json
     console.log('[webhoook] Triggered')
-    console.log(req);
+    console.log(req.result);
     // TODO parse JSON for
     // 1. intent
+
     // 2. action
     // 3. param
     var speech="webhook triggered";
