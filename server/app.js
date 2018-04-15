@@ -63,6 +63,22 @@ module.exports = function(express,alexaAppServerObject) {
     // 1. intent
     // 2. action
     // 3. param
+    var speech="webhook triggered";
+    // output context
+    var context_array=[];
+    res.json({
+      // encode the response json here
+      "speech": speech,
+      "displayText": speech,
+      "messages": {
+        "type": 1,
+        "title": "card title",
+        "subtitle": "card text",
+        "imageUrl": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png"
+      },
+      "contextOut": context_array,
+      "source": "alexa-server-ck.com",
+    });
   });
 
 
