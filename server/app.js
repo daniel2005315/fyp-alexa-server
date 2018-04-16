@@ -59,11 +59,16 @@ module.exports = function(express,alexaAppServerObject) {
     // take req json
     console.log('[webhoook] Triggered')
     // req.result gives undefined
+    // Can retrieve info
     console.log(req.body.result);
     // TODO parse JSON for
     // 1. intent
 
     // 2. action
+    // Check what action is needed, it indicates what will be inside the parameters field
+    // a. test.answer
+    // b. body.problem => parameters:{symtom:string, body_part:string}
+    // c.   
     // 3. param
     var speech="webhook triggered";
     // output context
