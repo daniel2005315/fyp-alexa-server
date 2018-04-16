@@ -55,24 +55,64 @@ module.exports = function(express,alexaAppServerObject) {
 	})
 
   // TODO: webhook for fulfillment
+  // The webhook will amend context out / speech
+  // For certain situation
   express.post('/webhook', function (req,res){
-    // take req json
     console.log('[webhoook] Triggered')
-    // req.result gives undefined
-    // Can retrieve info
-    console.log(req.body.result);
+    var speech;
+    var result=req.body.result;
+    var param=result.parameters;
+    // output context
+    var context_array=[];
+    console.log(result);
+
     // TODO parse JSON for
     // 1. intent
 
     // 2. action
     // Check what action is needed, it indicates what will be inside the parameters field
     // a. test.answer
-    // b. body.problem => parameters:{symtom:string, body_part:string}
-    // c.   
+    if(result.action==="elder.test1.answer"){
+      console.log("[webhook] test ans check");
+      // check if the answer is correct
+      var day = getDayofWeek();
+      console.log("correct ans: ",day);
+      var user_ans = result.parameters.date;
+      console.log("user answer: ",user_ans);
+      if(day===user_ans){
+        speech="Great! You got it right! Now, let me ask you, have you taken your pills?";
+        context_array=context_array.concat("test2_start");
+      }else{
+        speech="No it's not. Look up the calender and try it again!";
+        // output retry context
+        context_array= context_array.concat("test1_retry");
+      }
+
+    }
+    if(result.action==="elder.test1.retry"){
+      console.log("[webhook] test retry check");
+      // check if the answer is correct
+      var day = getDayofWeek();
+      console.log("correct ans: ",day);
+      var user_ans = result.parameters.date;
+      console.log("user answer: ",user_ans);
+      if(day===user_ans){
+        speech="Great! You got it right! Now, let me ask you, have you taken your pills?";
+      }else{
+        speech="Actually, today is "+day+". Try to remember it, I'll ask you again tomorrow! Now, tell me if you have taken your pills?";
+      }
+      context_array=context_array.concat("test2_start");
+
+    }
+    // c.
     // 3. param
-    var speech="webhook triggered";
-    // output context
-    var context_array=[];
+    // Body check webhook
+    // b. body.problem => parameters:{symtom:string, body_part:string}
+    if(result.action==="body.problem"){
+      // Just for record, no further processing needed
+      speech=result.fulfillment.speech;
+    }
+
     res.json({
       // encode the response json here
       "speech": speech,
@@ -87,6 +127,33 @@ module.exports = function(express,alexaAppServerObject) {
       "source": "alexa-server-ck.com",
     });
   });
+
+  function getDayofWeek(){
+    var day;
+    switch (new Date().getDay()) {
+      case 0:
+          day = "Sunday";
+          break;
+      case 1:
+          day = "Monday";
+          break;
+      case 2:
+          day = "Tuesday";
+          break;
+      case 3:
+          day = "Wednesday";
+          break;
+      case 4:
+          day = "Thursday";
+          break;
+      case 5:
+          day = "Friday";
+          break;
+      case 6:
+          day = "Saturday";
+      }
+      return day;
+  }
 
 
 };
