@@ -116,10 +116,11 @@ module.exports = function(express,alexaAppServerObject) {
     console.log("[webhook] sending speech and context array:");
     console.log(speech);
     console.log(context_array);
+    console.log(res);
     // try setting response explicitly
     var response={
       // encode the response json here
-      "speech": speech,
+      "speech": "webhook",
       "displayText": speech,
       "messages": {
         "type": 1,
@@ -130,8 +131,8 @@ module.exports = function(express,alexaAppServerObject) {
       "contextOut": context_array,
       "source": "alexa-server-ck.com"
     }
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(response));
+    //res.setHeader('Content-Type', 'application/json');
+    res.json(response);
 
   });
 
