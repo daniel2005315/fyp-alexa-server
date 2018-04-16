@@ -116,8 +116,8 @@ module.exports = function(express,alexaAppServerObject) {
     console.log("[webhook] sending speech and context array:");
     console.log(speech);
     console.log(context_array);
-
-    res.json({
+    // try setting response explicitly
+    var response={
       // encode the response json here
       "speech": speech,
       "displayText": speech,
@@ -128,8 +128,11 @@ module.exports = function(express,alexaAppServerObject) {
         "imageUrl": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png"
       },
       "contextOut": context_array,
-      "source": "alexa-server-ck.com",
-    });
+      "source": "alexa-server-ck.com"
+    }
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(response));
+
   });
 
   function getDayofWeek(){
