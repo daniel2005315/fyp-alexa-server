@@ -113,6 +113,10 @@ module.exports = function(express,alexaAppServerObject) {
       speech=result.fulfillment.speech;
     }
 
+    console.log("[webhook] sending speech and context array:");
+    console.log(speech);
+    console.log(context_array);
+
     res.json({
       // encode the response json here
       "speech": speech,
