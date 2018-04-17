@@ -77,15 +77,15 @@ module.exports = function(express,alexaAppServerObject) {
       // TODO: Try to check behavior
       var day = getDayofWeek();
       console.log("correct ans: ",day);
-      var user_ans = result.parameters.date;
+      var user_ans = result.parameters.date.original;
       console.log("user answer: ",user_ans);
       if(day===user_ans){
         speech="Great! You got it right! Now, let me ask you, have you taken your pills?";
-        //context_array=context_array.concat("test2_start");
+        context_name="test2_start";
       }else{
         speech="No it's not. Look up the calender and try it again!";
         // output retry context
-        //context_array= context_array.concat("test1_retry");
+        context_name="test1_retry";
       }
       /*
       // check if the answer is correct
@@ -108,15 +108,18 @@ module.exports = function(express,alexaAppServerObject) {
       console.log("[webhook] test retry check");
       // check if the answer is correct
       var day = getDayofWeek();
+      var context_name;
       console.log("correct ans: ",day);
       var user_ans = result.parameters.date;
       console.log("user answer: ",user_ans);
       if(day===user_ans){
         speech="Great! You got it right! Now, let me ask you, have you taken your pills?";
+        context_name="test2_start";
       }else{
         speech="Actually, today is "+day+". Try to remember it, I'll ask you again tomorrow! Now, tell me if you have taken your pills?";
+        context_name="test2_start";
       }
-      context_array=context_array.concat("test2_start");
+
 
     }
     // c.
@@ -131,8 +134,10 @@ module.exports = function(express,alexaAppServerObject) {
     }
 
     console.log("[webhook] sending speech and context array:");
-    console.log(speech);
-    console.log(context_array);
+    context_array=context_array.concat({
+      "name": context_name,
+      "lifespan": 1
+    });
 
     // try setting response explicitly
     var response={
