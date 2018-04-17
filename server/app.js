@@ -74,6 +74,9 @@ module.exports = function(express,alexaAppServerObject) {
     // a. test.answer
     if(result.action==="elder.test1.answer"){
       console.log("[webhook] test ans check");
+      // TODO: Try to check behavior
+      speech=result.fulfillment.speech;
+      /*
       // check if the answer is correct
       var day = getDayofWeek();
       console.log("correct ans: ",day);
@@ -87,6 +90,7 @@ module.exports = function(express,alexaAppServerObject) {
         // output retry context
         context_array= context_array.concat("test1_retry");
       }
+      */
 
     }
     if(result.action==="elder.test1.retry"){
