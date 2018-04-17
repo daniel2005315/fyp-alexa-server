@@ -48,8 +48,11 @@ server.express.use('/input', function(req,res){
   res.json(score);
 })
 
+// Useless, overided by app.js
+
 // 9-3-2018
 // Webhook for daily status
+/*
 server.express.post('/webhook', async function(req,res){
     // log request details
     //console.log(req);
@@ -77,6 +80,7 @@ server.express.post('/webhook', async function(req,res){
     });
   }
 );
+*/
 
 // Movie details example
 // themoviedb API Key: d4e6a3f439205ab8948c848ad64041fe

@@ -14,13 +14,13 @@
 <%- include header.ejs %>
 
   <div class="container" id=content>
+
     <form action="/login" method=post >
+      <h2 style="margin: 0 auto;"> Welcome!</h2>
+      <h4 style="margin: 0 auto;"> Start using by linking with your Gmail account</h4>
       <div class="form-group mt-5 mx-auto" style="max-width: 300px;">
-      <label class="col-form-label" for="username">Username</label>
-      <input class="form-control" id="username" name=uname value="<%= username %>"><br>
-      <label class="col-form-label" for="password">Password</label>
-      <input class="form-control" id="password" type=password name=pword><br>
-      <input class="btn btn-primary" type=submit value="Login"><br>
+        <button id="signinButton" style="magin: 0 auto;" onclick="javascript:location.href='https://alexa-server-ck.herokuapp.com/auth/login'">Sign in with Google</button>
+
       </div>
     </form>
 

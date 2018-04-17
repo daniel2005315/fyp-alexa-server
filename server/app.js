@@ -36,7 +36,14 @@ module.exports = function(express,alexaAppServerObject) {
 	express.use(passport.session());
 	express.use(oauth2.router);
 
-	// TODO: does not work
+  express.get('#',function(req,res) {
+		res.render('login.ejs',{title:'Login Page'});
+	});
+
+  express.all('/',function(req,res) {
+		res.render('login.ejs',{title:'Login Page'});
+	});
+
 	express.use('/alexa/myfriend',oauth2.required, (req, res, next) => {
 	  console.log("Middleware check\n");
 	});
@@ -67,9 +74,7 @@ module.exports = function(express,alexaAppServerObject) {
     console.log(result);
 
     // TODO parse JSON for
-    // 1. intent
-
-    // 2. action
+    // Actions: Additional reasoning / API calls
     // Check what action is needed, it indicates what will be inside the parameters field
     // a. test.answer
     if(result.action==="elder.test1.answer"){
@@ -87,22 +92,6 @@ module.exports = function(express,alexaAppServerObject) {
         // output retry context
         context_name="test1_retry";
       }
-      /*
-      // check if the answer is correct
-      var day = getDayofWeek();
-      console.log("correct ans: ",day);
-      var user_ans = result.parameters.date;
-      console.log("user answer: ",user_ans);
-      if(day===user_ans){
-        speech="Great! You got it right! Now, let me ask you, have you taken your pills?";
-        context_array=context_array.concat("test2_start");
-      }else{
-        speech="No it's not. Look up the calender and try it again!";
-        // output retry context
-        context_array= context_array.concat("test1_retry");
-      }
-      */
-
     }
     if(result.action==="elder.test1.retry"){
       console.log("[webhook] test retry check");
@@ -119,8 +108,6 @@ module.exports = function(express,alexaAppServerObject) {
         speech="Actually, today is "+day+". Try to remember it, I'll ask you again tomorrow! Now, tell me if you have taken your pills?";
         context_name="test2_start";
       }
-
-
     }
     // c.
     // 3. param
