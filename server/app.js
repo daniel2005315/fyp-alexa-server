@@ -79,7 +79,7 @@ module.exports = function(express,alexaAppServerObject) {
       console.log("correct ans: ",day);
       var user_ans = result.parameters.date.original;
       console.log("user answer: ",user_ans);
-      if(day===user_ans){
+      if(day.toLowerCase()===user_ans.toLowerCase()){
         speech="Great! You got it right! Now, let me ask you, have you taken your pills?";
         context_name="test2_start";
       }else{
@@ -110,9 +110,9 @@ module.exports = function(express,alexaAppServerObject) {
       var day = getDayofWeek();
       var context_name;
       console.log("correct ans: ",day);
-      var user_ans = result.parameters.date;
+      var user_ans = result.parameters.date.original;
       console.log("user answer: ",user_ans);
-      if(day===user_ans){
+      if(day.toLowerCase()===user_ans.toLowerCase()){
         speech="Great! You got it right! Now, let me ask you, have you taken your pills?";
         context_name="test2_start";
       }else{
