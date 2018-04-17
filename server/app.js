@@ -75,7 +75,7 @@ module.exports = function(express,alexaAppServerObject) {
     if(result.action==="elder.test1.answer"){
       console.log("[webhook] test ans check");
       // TODO: Try to check behavior
-      speech=result.fulfillment.speech;
+      speech="Test Answer";
       /*
       // check if the answer is correct
       var day = getDayofWeek();
@@ -114,17 +114,20 @@ module.exports = function(express,alexaAppServerObject) {
     // b. body.problem => parameters:{symtom:string, body_part:string}
     if(result.action==="body.problem"){
       // Just for record, no further processing needed
-      speech=result.fulfillment.speech;
+      //speech=result.fulfillment.speech;
+      // The above line works
+      speech="body problem";
     }
 
     console.log("[webhook] sending speech and context array:");
     console.log(speech);
     console.log(context_array);
-    console.log(res);
+
     // try setting response explicitly
     var response={
       // encode the response json here
-      "speech": "webhook",
+      // It works when hard coded as "some string"
+      "speech": speech,
       "displayText": speech,
       "messages": {
         "type": 1,
