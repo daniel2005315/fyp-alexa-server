@@ -14,6 +14,8 @@ const oauth2 = require('../auth/oauth2');
 
 // for making post requests
 var request= require('request');
+// for making request to Ulala service
+var ulala = require('./ulala.js');
 
 // [Configure session and storage]
 const sessionConfig = {
@@ -172,12 +174,12 @@ module.exports = function(express,alexaAppServerObject) {
   				method: 'POST'
   		};
       let result = await doRequest(options);
-      // TODO check, cannot get correct link token
-      console.log(result.linkToken);
+      result=JSON.parse(result);
       var linkToken=result.linkToken;
       var login_uri="https://alexa-server-ck.herokuapp.com/auth/login?linkToken="+linkToken;
       console.log(login_uri);
       // reply user with link to login
+      // TODO: code reuse, push message option
       options={
         	headers: {"Authorization": "Bearer rnbw0w2L4LHCCHnRU07CjzH42oYYN7INtOpXoHqsSOJibHfhUpKI7UUN/t8xlZbLh8GqNefkYOtD5iFbvPLvDP3XyKPtmUdZWO2E4JWxhxNmIfSpNbjszL8uneB+eSEEmCmf9Th1KFFhKDSgQWHnKwdB04t89/1O/w1cDnyilFU="},
           url: "https://api.line.me/v2/bot/message/push",
@@ -204,6 +206,11 @@ module.exports = function(express,alexaAppServerObject) {
       result= await doRequest(options);
       console.log(result);
 
+    }else{
+      if(event.type==='message'){
+        console.log("ready to reply the user");
+        console.log(event);
+      }
     }
     res.sendStatus(200);
   });
