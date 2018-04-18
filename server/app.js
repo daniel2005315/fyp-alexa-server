@@ -44,9 +44,9 @@ module.exports = function(express,alexaAppServerObject) {
 		res.render('login.ejs',{title:'Login Page'});
 	});
 
-	express.use('/alexa/myfriend',oauth2.required, (req, res, next) => {
-	  console.log("Middleware check\n");
-	});
+	//express.use('/alexa/myfriend',oauth2.required, (req, res, next) => {
+	//  console.log("Middleware check\n");
+	//});
 	//console.log(__dirname);
 	express.use('/login',function(req,res) {
 		res.render('login.ejs',{title:'Login Page'});
