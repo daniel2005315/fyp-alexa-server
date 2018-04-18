@@ -154,7 +154,7 @@ router.get(
   // it after authorization
   (req, res, next) => {
     console.log("[auth/login] GET started");
-    // TODO Handle the case where request is from Alexa
+    // Handle the case where request is from Alexa
     if(req.query.redirect_uri){
       console.log("Access from Alexa skill with redirect uri");
       access = 1;
@@ -163,8 +163,15 @@ router.get(
       console.log("***Save Alexa auth state as: "+req.session.alexa_state);
       console.log ("***Set alexa_redirect to: "+req.session.alexa_redirect);
     }else{
-      console.log("NO redirect_uri embeded, should be from web app");
-      access = 0;
+      // TODO: handle line account linking
+      if(req.query.linkToken){
+        console.log("****Linking from Line ");
+        req.session.line_linkToken=req.query.linkToken;
+        console.log("Link token is: "+req.query.linkToken);
+      }else{
+        console.log("NO redirect_uri embeded, should be from web app");
+        access = 0;
+      }
     }
     if (req.query.return) {
       req.session.oauth2return = req.query.return;
@@ -209,6 +216,11 @@ router.get(
       // TODO: Return accessToken in db
       redirect=redirect+"#state="+req.session.alexa_state+"&access_token="+token+"&token_type=Bearer";
 
+    }
+
+    // TODO redirect line users
+    if(req.session.line_linkToken){
+      redirect="https://access.line.me/dialog/bot/accountLink?linkToken="+req.session.line_linkToken+"&nonce="+token;
     }
 
     console.log("Logging the redirect path: "+redirect);

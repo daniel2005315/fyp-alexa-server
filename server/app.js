@@ -12,6 +12,9 @@ const passport = require('passport');
 // Added session checking for Google Account linking
 const oauth2 = require('../auth/oauth2');
 
+// for making post requests
+var request= require('request');
+
 // [Configure session and storage]
 const sessionConfig = {
   resave: false,
@@ -150,11 +153,74 @@ module.exports = function(express,alexaAppServerObject) {
   // Line Channel ID: 1573527052
   // Line Channel secret: 4fa264670227e8b05095f879ed09d344
   // Access token (long lived): rnbw0w2L4LHCCHnRU07CjzH42oYYN7INtOpXoHqsSOJibHfhUpKI7UUN/t8xlZbLh8GqNefkYOtD5iFbvPLvDP3XyKPtmUdZWO2E4JWxhxNmIfSpNbjszL8uneB+eSEEmCmf9Th1KFFhKDSgQWHnKwdB04t89/1O/w1cDnyilFU=
-  express.post('/line/webhook', function(req,res){
+  express.post('/line/webhook', async function(req,res){
     console.log("[line.webhook] Triggered");
-    console.log(req.body.events);
+    var event_arry = req.body.events;
+    var event = event_arry[0];
+    var user_id=event.source.userId;
+    // Handle user linking (First time adding line bot as friend)
+    if (event.type==='follow'){
+      // User just added bot as friend
+      // Start account linking processing
+      console.log("[line] Start linking with user: "+user_id);
+      // post request to obtain link token
+      var url = "https://api.line.me/v2/bot/user/"+user_id+"/linkToken";
+      // set header with channel access token
+      var options = {
+  			headers: {"Authorization": "Bearer rnbw0w2L4LHCCHnRU07CjzH42oYYN7INtOpXoHqsSOJibHfhUpKI7UUN/t8xlZbLh8GqNefkYOtD5iFbvPLvDP3XyKPtmUdZWO2E4JWxhxNmIfSpNbjszL8uneB+eSEEmCmf9Th1KFFhKDSgQWHnKwdB04t89/1O/w1cDnyilFU="},
+  				url: url,
+  				method: 'POST'
+  		};
+      let result = await doRequest(options);
+      console.log(res);
+      var linkToken=result.linkToken;
+      var login_uri="https://alexa-server-ck.herokuapp.com/auth/login?linkToken="+linkToken;
+      // reply user with link to login
+      options={
+        	headers: {"Authorization": "Bearer rnbw0w2L4LHCCHnRU07CjzH42oYYN7INtOpXoHqsSOJibHfhUpKI7UUN/t8xlZbLh8GqNefkYOtD5iFbvPLvDP3XyKPtmUdZWO2E4JWxhxNmIfSpNbjszL8uneB+eSEEmCmf9Th1KFFhKDSgQWHnKwdB04t89/1O/w1cDnyilFU="},
+          url: "https://api.line.me/v2/bot/message/push",
+          method: 'POST',
+          json:true,
+          body:{
+            "to": user_id,
+            "messages": [{
+                "type": "template",
+                "altText": "Account Link",
+                "template": {
+                    "type": "buttons",
+                    "text": "Account Link",
+                    "actions": [{
+                        "type": "uri",
+                        "label": "Account Link",
+                        "uri": login_uri
+                    }]
+                }
+            }]
+          }
+      };
+      // sending push message to ask user to link account
+      result= await doRequest(options);
+      console.log(result);
+
+    }
     res.sendStatus(200);
   });
+
+// making request
+  function doRequest(url) {
+    return new Promise(function (resolve, reject) {
+      request(url, function (error, res, body) {
+        if (!error && res.statusCode == 200) {
+  				console.log("[doRequest]res received");
+          resolve(body);
+        } else {
+  				console.log("Status code:"+res.statusCode);
+  				console.log("[doRequest]rejected, error=>"+error);
+          reject(error);
+        }
+      });
+    });
+  }
 
   function getDayofWeek(){
     var day;
