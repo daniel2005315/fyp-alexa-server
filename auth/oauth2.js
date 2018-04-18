@@ -63,7 +63,7 @@ passport.use(new GoogleStrategy({
   console.log("[passport.use GoogleStrategy] passport authen returned\n");
   // in profile, there are the following:
   // id, displayName, names{familyName,givenName}, emails,gender
-  console.log(profile);
+  //console.log(profile);
   // May pass accessToken for usage
   cb(null, extractProfile(profile));
 }));

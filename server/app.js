@@ -172,8 +172,9 @@ module.exports = function(express,alexaAppServerObject) {
   				method: 'POST'
   		};
       let result = await doRequest(options);
-      console.log(res);
-      var linkToken=result.linkToken;
+      // TODO check, cannot get correct link token
+      console.log(result);
+      var linkToken=result;
       var login_uri="https://alexa-server-ck.herokuapp.com/auth/login?linkToken="+linkToken;
       // reply user with link to login
       options={
