@@ -16,6 +16,8 @@ const oauth2 = require('../auth/oauth2');
 var request= require('request');
 // for making request to Ulala service
 var ulala = require('./ulala.js');
+// access Database
+var model = require('../db/model.js');
 
 // [Configure session and storage]
 const sessionConfig = {
@@ -210,7 +212,19 @@ module.exports = function(express,alexaAppServerObject) {
       if(event.type==='message'){
         console.log("ready to reply the user");
         console.log(event);
+        let reply = await ulala.line_request(event.source.userId,event.message.text);
+        // TODO return reply to line
+        console.log("Send reply");
       }
+    }
+
+    // bind line user id in database
+    if(event.type==='accountLink'){
+      var accessToken=event.link.nonce;
+      var lineID=event.source.userId;
+      console.log("binding lindID "+lineID+" with user access "+accessToken);
+      let result = await model.updateUserInfo(accessToken,"lineID",lineID);
+      console.log(result);
     }
     res.sendStatus(200);
   });

@@ -25,8 +25,10 @@ var UserSchema = Schema({
   gender:{type:String,required:false},
   // indiate elder/norm user
   usr_type:{type:String, default:'norm'},
-  // string 
+  // string
   access_token:{type:String,unique:true,required:true},
+  // lind user id, if linked
+  lineID:{type:String,unique:true},
   // contact idicates users that are related
   contacts:[{type: ObjectId, required:true, ref:'User'}]
 });
@@ -195,6 +197,20 @@ async function findUser(access_token){
   }
 }
 
+// Find user by Line id
+async function findUserLine(userID){
+  try{
+    let result = await User.
+      findOne( {
+        "lineID": userID,
+      } ).
+      exec();
+    return result;
+  }catch(err){
+    console.log("[findUser] err ",err);
+  }
+}
+
 // Find if the user exists by Email
 // Return the access_token of user
 async function findUserByEmail(email) {
@@ -354,6 +370,7 @@ module.exports = {
   getItems: getItems,
   getItem: getItem,
   findUser: findUser,
+  findUserLine: findUserLine,
   getUserName: getUserName,
   findUserByEmail: findUserByEmail,
   updateUser: updateUser,

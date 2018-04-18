@@ -1,4 +1,6 @@
 var request= require('request');
+// access Database
+var model = require('../db/model.js');
 
 function doRequest(url) {
   return new Promise(function (resolve, reject) {
@@ -13,6 +15,21 @@ function doRequest(url) {
       }
     });
   });
+}
+
+// TODO Line request, involving transform of line user id into accesstoken
+async function line_request(userId,message){
+  // Read database
+  try{
+    let result= await model.findUserLine(userId);
+    console.log("[line_request] Got user");
+    console.log(result);
+    let res = await make_request(result.access_token, message);
+    return res;
+  }catch(err){
+    console.log(err);
+  }
+
 }
 
 // make_request(accessToken, message)
