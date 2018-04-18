@@ -73,13 +73,12 @@ module.exports = function(express,alexaAppServerObject) {
     var context_array=[];
     console.log(result);
 
-    // TODO parse JSON for
+    // Parse JSON for
     // Actions: Additional reasoning / API calls
     // Check what action is needed, it indicates what will be inside the parameters field
     // a. test.answer
     if(result.action==="elder.test1.answer"){
       console.log("[webhook] test ans check");
-      // TODO: Try to check behavior
       var day = getDayofWeek();
       console.log("correct ans: ",day);
       var user_ans = param.date;

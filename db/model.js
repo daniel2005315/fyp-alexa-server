@@ -25,9 +25,10 @@ var UserSchema = Schema({
   gender:{type:String,required:false},
   // indiate elder/norm user
   usr_type:{type:String, default:'norm'},
-  access_token:{type:Number,unique:true,required:true},
-
-
+  // string 
+  access_token:{type:String,unique:true,required:true},
+  // contact idicates users that are related
+  contacts:[{type: ObjectId, required:true, ref:'User'}]
 });
 
 // 9-4-2018
@@ -40,7 +41,14 @@ var StatusSchema = Schema({
   // score for body condition / comfortable or not
   // range -3 ~ 3
   body:{type:Number, default:0}
-  // ... May be expanded further
+});
+
+// body status schema to be included in RecordSchema
+var BodySchema = Schema({
+  // body part with problem
+  body_part:{type:String, required:true},
+  // condition of the body part
+  symtom:{type:String, required:true}
 });
 
 // Daily record of the user
@@ -51,7 +59,9 @@ var RecordSchema = Schema({
   count:{type:Number, default:0},
   avg_sentiment_score:{type:Number,default:0},
   // array of status object
-  status:[StatusSchema]
+  status:[StatusSchema],
+  // array of body status object
+  bodyCheck:[BodySchema]
 });
 
 
@@ -217,8 +227,6 @@ async function findUserDailyRecord(access_token,yyyymmdd) {
         "date": yyyymmdd
       } ).populate('owner').
       exec();
-      //console.log("[findUserDailyRecord]");
-      //console.log(result);
     return result;
   }catch(err){
     console.log("[findUserDailyRecord] err ",err);

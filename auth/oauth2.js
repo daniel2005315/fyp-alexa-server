@@ -68,27 +68,31 @@ passport.use(new GoogleStrategy({
   cb(null, extractProfile(profile));
 }));
 
+// using md5 to generate a hash value from email
+async function generateToken(input){
+  var hash = require('crypto').createHash('md5').update(input).digest("hex")
+  return hash;
+}
 // 5-4-2018 Add accesstoken generation for testing
 // TODO may add custom access token for storage in db to indicate user
 passport.serializeUser(async (user, cb) => {
   console.log('[passport.serializeUser] Started');
   // check email in database, if not exists, generate token and create user in db
   // use accessToken (ID) to identify user Uniquely
-  // TODO: working on this part
   try{
     let token = await model.findUserByEmail(user.email);
     console.log(token);
     if(token!=null){
-      // TODO: If user exists, bind accessToken from DB to user
+      // If user exists, bind accessToken from DB to user
       console.log("user exists");
       user.accessToken=token;
     }else {
       console.log("user not in db yet, create user");
-      // Generate token for user
-      // Hard code number 101 for Now
-      let result = await model.addUser(user.email,101);
+      // TODO Generate token using md5 for user
+      let unique_token=await generateToken(user.email);
+      let result = await model.addUser(user.email,unique_token);
       // Success, bind user with token
-      user.accessToken=101;
+      user.accessToken=unique_token;
       console.log(result);
     }
     cb(null, user);
@@ -96,6 +100,15 @@ passport.serializeUser(async (user, cb) => {
     console.log(err);
   }
 });
+
+/* backup
+// Generate token for user
+// Hard code number 101 for Now
+let result = await model.addUser(user.email,101);
+// Success, bind user with token
+user.accessToken=101;
+console.log(result);
+*/
 passport.deserializeUser((obj, cb) => {
   cb(null, obj);
 });

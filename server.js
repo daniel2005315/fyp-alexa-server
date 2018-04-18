@@ -3,7 +3,6 @@
 var AlexaAppServer = require("alexa-app-server");
 var sentiment_Analyser = require("./process/sAnalyse.js");
 var entityClassifier = require("./process/entityTrain.js");
-// var database =
 var handler = require("./process/webhook.js");
 
 var server = new AlexaAppServer({
@@ -13,30 +12,18 @@ var server = new AlexaAppServer({
 
 });
 
+// Initialize database connection
+require("./db/database.js");
+
+server.start();
+
+
+// Not using the following now
+
 // Set up the data before server starts
 // 19-2-2018 Disable the classifier
 //entityClassifier.init();
-require("./db/database.js");
-// Testing on database promise
-/*
-database.connect().then(function(result){
-  var status;
-  console.log("Progmise returned by resolved"+result);
-  if(result){
-    status='online';
-  }
-  else {
-    status='offline';
-  }
-  console.log("Database is: "+status);
-});
-*/
 
-// Test the training feature
-//entityClassifier.addToTraining(coffee,'coffee');
-
-
-server.start();
 // ask user to login if not
 // *** Google Oauth2 API Keys
 // # Client ID: 115422974852-ppcqqt3s258bicmqgmk5nocdu4peo83f.apps.googleusercontent.com
