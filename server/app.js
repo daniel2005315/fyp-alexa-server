@@ -152,7 +152,7 @@ module.exports = function(express,alexaAppServerObject) {
   // Access token (long lived): rnbw0w2L4LHCCHnRU07CjzH42oYYN7INtOpXoHqsSOJibHfhUpKI7UUN/t8xlZbLh8GqNefkYOtD5iFbvPLvDP3XyKPtmUdZWO2E4JWxhxNmIfSpNbjszL8uneB+eSEEmCmf9Th1KFFhKDSgQWHnKwdB04t89/1O/w1cDnyilFU=
   express.post('/line/webhook', function(req,res){
     console.log("[line.webhook] Triggered");
-    console.log(req.body.);
+    console.log(req.body.events);
     res.sendStatus(200);
   });
 
