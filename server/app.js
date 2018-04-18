@@ -173,9 +173,10 @@ module.exports = function(express,alexaAppServerObject) {
   		};
       let result = await doRequest(options);
       // TODO check, cannot get correct link token
-      console.log(result);
-      var linkToken=result;
+      console.log(result.linkToken);
+      var linkToken=result.linkToken;
       var login_uri="https://alexa-server-ck.herokuapp.com/auth/login?linkToken="+linkToken;
+      console.log(login_uri);
       // reply user with link to login
       options={
         	headers: {"Authorization": "Bearer rnbw0w2L4LHCCHnRU07CjzH42oYYN7INtOpXoHqsSOJibHfhUpKI7UUN/t8xlZbLh8GqNefkYOtD5iFbvPLvDP3XyKPtmUdZWO2E4JWxhxNmIfSpNbjszL8uneB+eSEEmCmf9Th1KFFhKDSgQWHnKwdB04t89/1O/w1cDnyilFU="},
