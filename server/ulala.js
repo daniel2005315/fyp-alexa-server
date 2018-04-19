@@ -22,8 +22,13 @@ async function line_request(userId,message){
   // Read database
   try{
     let result= await model.findUserLine(userId);
-    console.log("[line_request] Got user");
-    console.log(result);
+    if(result!=null){
+      console.log("[line_request] Got user");
+      console.log(result);
+    }else{
+      console.log("[line_request] User not in db");
+      result={"name":"dummy","accessToken":"visitorToken777"};
+    }
     let res = await make_request(result.access_token, message);
     return res;
   }catch(err){
