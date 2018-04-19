@@ -143,8 +143,12 @@ async function line_push(lineID,message,source){
         "to": lineID,
         "messages": [{
           "type": "text",
-          "text": "Hello, world"
-        }]
+          "text": "You have got the following message from: "+source
+        },{
+          "type": "text",
+          "text": message
+        }
+      ]
       }
   };
   try{
