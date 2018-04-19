@@ -70,7 +70,7 @@ module.exports = function(express,alexaAppServerObject) {
 
   // 19-4-2018 TODO show personal moviedetails
   // TODO add back the oauth2.required, middle ware later
-  express.use('/settings',oauth2.required, async function (req,res)=>{
+  express.use('/settings',oauth2.required, async function (req,res){
     try{
       console.log("getting settings");
       console.log(req);
