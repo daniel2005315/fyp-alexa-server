@@ -277,6 +277,24 @@ async function findUserDailyRecord(access_token,yyyymmdd) {
   }
 }
 
+// populate result with user info
+async function getUserContactsID(access_token) {
+  try{
+
+    let result = await User.
+      findOne( {
+        "access_token": access_token,
+      },'contacts').exec();
+    console.log(result);
+    // got array of contacts
+    var list=result.contacts.map(a=>a._id);
+    return list;
+  }catch(err){
+    console.log("[getUserContactsID] err ",err);
+  }
+}
+
+
 // TODO
 // populate result with user info
 async function createDailyRecord(access_token,yyyymmdd) {
@@ -365,6 +383,13 @@ async function updateUserInfo(accessToken, field, value){
   }
 }
 
+// add a new contact for users
+// bidirectional
+async function addUserContact(accessToken, id){
+
+
+}
+
 
 // Place holder for authentication
 function authenticate(username, password) {
@@ -408,5 +433,7 @@ module.exports = {
   createDailyRecord: createDailyRecord,
   getUserTodaysRecord: getUserTodaysRecord,
   updateUserDailyRecord: updateUserDailyRecord,
+  getUserContactsID: getUserContactsID,
+  addUserContact: addUserContact,
   addUser: addUser
 }

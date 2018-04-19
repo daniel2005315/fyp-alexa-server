@@ -155,10 +155,25 @@ module.exports = function(express,alexaAppServerObject) {
     }
     // b. body.problem => parameters:{symtom:string, body_part:string}
     if(result.action==="body.problem"){
-      // Just for record, no further processing needed
-      //speech=result.fulfillment.speech;
-      // The above line works
-      speech="body problem";
+      console.log("[action: body.problem] started");
+      try{
+        // send a notify message to everyone in contacts
+        let contact_ids=await model.getUserContactsID(sessionId);
+        let source = await model.getUserName(sessionId);
+        contact_ids.forEach(async function(value){
+          console.log(value);
+          // Send line messages
+          let result = await model.findUserbyID(value);
+          // get user's lineID
+          var lineID = result.lineID;
+          ulala.line_pushBody(lineID,param.body_part,param.symtom,source);
+        })
+        // The above line works
+        speech="I have taken notes on it. Do you need immediate help now?";
+        context_name="body_alert";
+      }catch(err){
+        console.log(err);
+      }
     }
 
     // TODO prompt for message

@@ -166,6 +166,11 @@ async function updateDB(){
   }
 }
 
+// populate result with user info
+async function getUserContactsID(access_token) {
+  let result = await model.getUserContactsID(access_token);
+}
 
 //runTest();
-updateDB2();
+//updateDB2();
+getUserContactsID("101ihave1nc3th5le1f5oeishahaline");

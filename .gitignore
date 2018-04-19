@@ -59,4 +59,4 @@ typings/
 
 # test files
 make_request.js
-
+db_test.js
