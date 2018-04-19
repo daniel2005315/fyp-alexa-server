@@ -124,7 +124,39 @@ async function make_request(accessToken, message){
   }
 }
 
+// Sending line push message to user
+// including Sender's name
+async function line_push(lineID,message,source){
+  options={
+      headers: {"Authorization": "Bearer rnbw0w2L4LHCCHnRU07CjzH42oYYN7INtOpXoHqsSOJibHfhUpKI7UUN/t8xlZbLh8GqNefkYOtD5iFbvPLvDP3XyKPtmUdZWO2E4JWxhxNmIfSpNbjszL8uneB+eSEEmCmf9Th1KFFhKDSgQWHnKwdB04t89/1O/w1cDnyilFU="},
+      url: "https://api.line.me/v2/bot/message/push",
+      method: 'POST',
+      json:true,
+      body:{
+        "to": lineID,
+        "messages": [{
+            "type": "template",
+            "altText": "You've got a message!",
+            "template": {
+                "type": "buttons",
+                "title": source,
+                "text": message,
+                "actions": []
+            }
+        }]
+      }
+  };
+  try{
+    // sending push message to ask user to link account
+    let result= await doRequest(options);
+    return true;
+  }catch(err){
+    console.log(err);
+  }
+}
+
 module.exports ={
   make_request: make_request,
-  line_request:line_request
+  line_request:line_request,
+  line_push:line_push
 }
