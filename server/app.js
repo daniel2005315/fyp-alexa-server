@@ -176,7 +176,28 @@ module.exports = function(express,alexaAppServerObject) {
       }
     }
 
-    // TODO prompt for message
+    if(result.action==="alert.help"){
+      console.log("[alert.help] started");
+      try{
+        // send a notify message to everyone in contacts
+        let contact_ids=await model.getUserContactsID(sessionId);
+        let source = await model.getUserName(sessionId);
+        contact_ids.forEach(async function(value){
+          console.log(value);
+          // Send line messages
+          let result = await model.findUserbyID(value);
+          // get user's lineID
+          var lineID = result.lineID;
+          ulala.line_SOS(lineID,source);
+        })
+        // The above line works
+        speech="I have asked for help. Don't worry!";
+      }catch(err){
+        console.log(err);
+      }
+    }
+
+    // prompt for message
     if(result.action==="line.send"){
       var target_user;
       // TODO check if contact param is validate

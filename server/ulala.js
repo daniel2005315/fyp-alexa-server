@@ -193,6 +193,39 @@ async function line_pushBody(lineID,body_part,symtom,source){
   }
 }
 
+// message indicating user with body problem
+async function line_SOS(lineID,source){
+  options={
+      headers: {"Authorization": "Bearer rnbw0w2L4LHCCHnRU07CjzH42oYYN7INtOpXoHqsSOJibHfhUpKI7UUN/t8xlZbLh8GqNefkYOtD5iFbvPLvDP3XyKPtmUdZWO2E4JWxhxNmIfSpNbjszL8uneB+eSEEmCmf9Th1KFFhKDSgQWHnKwdB04t89/1O/w1cDnyilFU="},
+      url: "https://api.line.me/v2/bot/message/push",
+      method: 'POST',
+      json:true,
+      body:{
+        "to": lineID,
+        "messages": [{
+                    "type": "text",
+                    "text": "This is an EMERGENCY."
+                  },{
+                    "type": "text",
+                    "text": source+" NEED HELP IMMEDIATLY"
+                  },{
+                    "type": "text",
+                    "text": symtom
+                  },{
+                    "type": "text",
+                    "text": "PLEASE OFFER HELP ASAP!"
+                  }]
+      }
+  };
+  try{
+    // sending push message to ask user to link account
+    let result= await doRequest(options);
+    return true;
+  }catch(err){
+    console.log(err);
+  }
+}
+
 module.exports ={
   make_request: make_request,
   line_request:line_request,
