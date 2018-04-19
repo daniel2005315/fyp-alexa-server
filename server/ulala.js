@@ -135,14 +135,12 @@ async function line_push(lineID,message,source){
       body:{
         "to": lineID,
         "messages": [{
-            "type": "template",
-            "altText": "You've got a message!",
-            "template": {
-                "type": "buttons",
-                "title": source,
-                "text": message,
-                "actions": []
-            }
+            "type": "text",
+            "text": "You've got a message from "+source+"!"
+        },
+        {
+            "type": "text",
+            "text": message
         }]
       }
   };

@@ -212,6 +212,7 @@ module.exports = function(express,alexaAppServerObject) {
         // TODO send push message as required
         // include own name
         let source = await model.getUserName(sessionId);
+        console.log("source: ",source);
         let result=await ulala.line_push(targetID,message,source);
         // TODO if successful, say success
         if(result){
