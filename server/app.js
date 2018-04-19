@@ -70,9 +70,16 @@ module.exports = function(express,alexaAppServerObject) {
 
   // 19-4-2018 TODO show personal moviedetails
   // TODO add back the oauth2.required, middle ware later
-  express.use('/settings',oauth2.required, (req,res)=>{
-    res.locals.profile=req.user;
-    res.render("profile.ejs",{title:"My account"});
+  express.use('/settings',oauth2.required, async function (req,res)=>{
+    try{
+      console.log("getting settings");
+      console.log(req);
+      res.locals.profile=req.user;
+      let data = await model.findUser(req.user.accessToken);
+      res.render("profile.ejs",{title:"My account",data:data});
+    }catch(err){
+      console.log(err);
+    }
 
   })
 
@@ -173,10 +180,11 @@ module.exports = function(express,alexaAppServerObject) {
             var found = entry.name.find(function(name){
               console.log("looking at name: "+name.toLowerCase().trim())
               if(name.toLowerCase().trim()===name_query){
+                console.log("Matched name !");
                 return true;
               }
             });
-            if(found===true){
+            if(found){
               console.log("Found!");
               return entry;
             }
