@@ -202,7 +202,7 @@ module.exports = function(express,alexaAppServerObject) {
       var message_target=contexts_in.find(function (obj) { return obj.name === 'line_send_message'; });
       console.log("[action.line.send] starts");
       console.log(message_target);
-      var targetID = message_target.target_line;
+      var targetID = message_target.parameters.target_line;
       var message = param.message;
 
       console.log("[action.line.send] Web hook sending message->"+message);
