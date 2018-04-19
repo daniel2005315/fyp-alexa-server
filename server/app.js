@@ -166,7 +166,7 @@ module.exports = function(express,alexaAppServerObject) {
           let result = await model.findUserbyID(value);
           // get user's lineID
           var lineID = result.lineID;
-          ulala.line_pushBody(lineID,param.body_part,param.symtom,source);
+          ulala.line_pushBody(lineID,param.body_part,param.symptom,source);
         })
         // The above line works
         speech="I have taken notes on it. Do you need immediate help now?";
