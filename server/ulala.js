@@ -141,10 +141,9 @@ async function line_push(lineID,message,source){
       json:true,
       body:{
         "to": lineID,
-        "messages": [
-        {
-            "type": "text",
-            "text": message
+        "messages": [{
+          "type": "text",
+          "text": "Hello, world"
         }]
       }
   };
