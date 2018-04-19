@@ -146,8 +146,9 @@ module.exports = function(express,alexaAppServerObject) {
             console.log("looking at entry:")
             console.log(entry);
             if(entry.relation===contact.relation){
-              return entry.user;
+              return entry._id;
             }
+
           });
 
         }else if(contact.given_name!=null){
@@ -164,15 +165,17 @@ module.exports = function(express,alexaAppServerObject) {
               }
             });
             if(found===true){
-              return entry.user;
+              return entry._id;
             }
           });
 
         }
+        // Target_user is the user's server id
         if(target_user!=null){
-          console.log(target_user);
+          let result = await model.findUser(target_user);
+
           // get user's lineID
-          var lineID = target_user.lineID;
+          var lineID = result.lineID;
         }
         // contact.given_name   => look for name array in contact
         console.log("[line.send] Web hook got lindID->"+lineID);
