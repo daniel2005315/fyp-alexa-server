@@ -215,6 +215,22 @@ module.exports = function(express,alexaAppServerObject) {
         let reply = await ulala.line_request(event.source.userId,event.message.text);
         // TODO ############return reply to line
         console.log("Send reply");
+        options={
+          	headers: {"Authorization": "Bearer rnbw0w2L4LHCCHnRU07CjzH42oYYN7INtOpXoHqsSOJibHfhUpKI7UUN/t8xlZbLh8GqNefkYOtD5iFbvPLvDP3XyKPtmUdZWO2E4JWxhxNmIfSpNbjszL8uneB+eSEEmCmf9Th1KFFhKDSgQWHnKwdB04t89/1O/w1cDnyilFU="},
+            url: "https://api.line.me/v2/bot/message/reply",
+            method: 'POST',
+            json:true,
+            body:{
+              "replyToken": event.replyToken,
+              "messages": [{
+                  "type": "text",
+                  "text": reply
+              }]
+            }
+        };
+        result= await doRequest(options);
+        console.log("Reply sent to line user");
+
       }
     }
 
