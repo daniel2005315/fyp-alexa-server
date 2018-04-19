@@ -172,11 +172,8 @@ module.exports = function(express,alexaAppServerObject) {
           });
 
         }
-        // Target_user is a String
-        target_user= JSON.parse(target_user);
-
         if(target_user!=null){
-          let result = await model.findUser(target_user._id);
+          let result = await model.findUserbyID(target_user._id);
           // get user's lineID
           var lineID = result.lineID;
         }

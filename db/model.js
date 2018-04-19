@@ -210,6 +210,21 @@ async function findUser(access_token){
   }
 }
 
+// Find if user exists by token
+async function findUserbyID(userID){
+  try{
+    let _id = new mongoose.Types.ObjectId(userID);
+    let result = await User.
+      findOne( {
+        _id: _id,
+      } ).
+      exec();
+    return result;
+  }catch(err){
+    console.log("[findUser] err ",err);
+  }
+}
+
 // Find user by Line id
 async function findUserLine(userID){
   try{
@@ -386,6 +401,7 @@ module.exports = {
   findUserLine: findUserLine,
   getUserName: getUserName,
   findUserByEmail: findUserByEmail,
+  findUserbyID: findUserbyID,
   updateUser: updateUser,
   updateUserInfo: updateUserInfo,
   findUserDailyRecord: findUserDailyRecord,
