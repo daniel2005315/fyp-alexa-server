@@ -11,6 +11,8 @@ function doRequest(url) {
       } else {
 				console.log("Status code:"+res.statusCode);
 				console.log("[doRequest]rejected, error=>"+error);
+        console.log("[doRequest err] res body:");
+        console.log(res.body);
         reject(error);
       }
     });
