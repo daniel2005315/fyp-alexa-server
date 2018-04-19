@@ -126,10 +126,25 @@ module.exports = function(express,alexaAppServerObject) {
     // TODO prompt for message
     if(result.action==="line.send"){
       // TODO check if contact param is validate
+      var contact = param.contact;
+      // contact.relation  => look for exact relation in contact
+      // contact.given_name   => look for name array in contact
       console.log("[line.send] Web hook got param->"+param.contact);
       // TODO if valid, ask for message
       speech="What would you like to say?";
       context_name="line_send_message";
+    }
+
+    if(result.action==="action.line.send"){
+      // TODO check if contact param is validate
+      var contact = param.contact;
+      // contact.relation  => look for exact relation in contact
+      // contact.given_name   => look for name array in contact
+      console.log("[action.line.send] Web hook got param->"+param);
+      console.log("result->"result);
+      // TODO if successful, say success
+      speech="Message sent";
+      context_name="line_send_message_success";
     }
 
     console.log("[webhook] sending speech and context array:");
