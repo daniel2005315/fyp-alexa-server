@@ -61,19 +61,25 @@ module.exports = function(express,alexaAppServerObject) {
 
 	// DONE
 	// Check for login before proceeding to chat page
-	express.use('/chat', oauth2.required, (req, res, next) =>{
-    // TODO Check
-    res.locals.ptitle="Let's chat!";
-    res.render('chat.ejs',{title:"Let's chat!"});
+	express.use('/chat', oauth2.required, async function (req, res, next){
+    try{
+      // TODO Check
+      res.locals.profile=req.user;
+      console.log("Chat: ",req.user);
+      let data = await model.findUser(req.user.accessToken);
+
+      res.render('chat.ejs',{title:"Let's chat!",data:data});
+    }catch(err){
+      console.log(err);
+    }
 
 	})
 
   // 19-4-2018 TODO show personal moviedetails
   // TODO add back the oauth2.required, middle ware later
-  express.use('/settings',oauth2.required, async function (req,res){
+  express.use('/profile',oauth2.required, async function (req,res){
     try{
       console.log("getting settings");
-      console.log(req);
       res.locals.profile=req.user;
       let data = await model.findUser(req.user.accessToken);
       res.render("profile.ejs",{title:"My account",data:data});
@@ -81,8 +87,18 @@ module.exports = function(express,alexaAppServerObject) {
       console.log(err);
     }
 
-  })
+  });
 
+  express.use('/status',oauth2.required, async function (req,res){
+    try{
+      res.locals.profile=req.user;
+      let data = await model.getUserTodaysRecord(req.user.accessToken);
+      res.render("status.ejs",{title:"Status",data:data});
+    }catch(err){
+      console.log(err);
+    }
+
+  });
   // TODO: webhook for fulfillment
   // The webhook will amend context out / speech
   // For certain situation

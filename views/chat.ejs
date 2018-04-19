@@ -7,118 +7,13 @@
 %>
 <%
   // Set default values
-  locals.username = locals.username || "";
+  locals.user = locals.profile || null;
   locals.loginMsg = locals.loginMsg || "";
-  locals.user = locals.user || null;
   id="amzn1.ask.skill.479c8c69-349f-42f0-896a-7c6a8c3b267d";
 
 %>
 <%- include header.ejs %>
-<script type="text/javascript" src="../angular.min.js"></script>
-<script type="text/javascript" src="../templates.json"></script>
 
-<script>
-  function clone(o) {
-    return JSON.parse(JSON.stringify(o));
-  }
-
-  // For Angular
-  var app = angular.module('alexa', []);
-  app.controller('AlexaController', function($scope, $http) {
-    $scope.request = {};
-    $scope.response = null;
-    $scope.requestType = null;
-    $scope.session = {};
-    $scope.intent = null;
-    $scope.locale = 'en-US';
-
-    $scope.changetype = function() {
-      if ($scope.requestType !== '') {
-        $scope.request = clone($scope.templates[$scope.requestType]);
-        $scope.request.session.attributes = $scope.session;
-        $scope.request.request.locale = $scope.locale;
-      } else {
-        $scope.request = {};
-      }
-
-      $scope.intent = null;
-    };
-
-    $scope.changelocale = function() {
-      $scope.request.request.locale = $scope.locale;
-    };
-
-    $scope.changeintent = function() {
-      $scope.request = clone($scope.templates['intent']);
-      $scope.request.session.attributes = $scope.session;
-      $scope.request.request.intent.slots = {};
-      $scope.request.request.intent.name = $scope.intent;
-      $scope.request.request.locale = $scope.locale;
-    }
-
-    $scope.post = function() {
-      alert("post invoked");
-      $scope.request = clone($scope.templates['intent']);
-      $scope.request.request.intent.name ="CatchAllIntent";
-      $scope.request.request.intent.slots={
-                                            "speech": {
-                                              "value": "hello",
-                                              "name": "speech"
-                                            }
-                                          };
-      console.log($scope.request);
-      $scope.request.session.attributes = $scope.session;
-      $scope.request.request.locale = $scope.locale;
-      if (Object.keys($scope.request).length !== 0) {
-        $http.post(location.href, $scope.request)
-          .then(function onSuccess(response) {
-            console.log("Got response!");
-            $scope.response = response.data;
-            console.log($scope.response);
-
-            //console.log(response.data);
-            // Copy session variables
-            if ($scope.response && $scope.response.sessionAttributes) {
-              $scope.session = $scope.response.sessionAttributes;
-              $scope.request.session.attributes = $scope.session;
-            }
-          })
-          .catch(function onError(error) {
-            alert(error.message);
-          });
-        } else {
-          alert("Error: Cannot send an empty request object. Please select a request type.");
-        }
-    }
-
-    $scope.getIntent = function() {
-      try {
-        var intents = $scope.schema.intents;
-        for (var i = 0; i < intents.length; i++) {
-          var intent = intents[i];
-          if (intent.intent == $scope.request.request.intent.name) {
-            return intent;
-          }
-        };
-        return null;
-      } catch(e) { return null; }
-    };
-
-    $scope.templates = templates;
-
-    // Extract the applicationId if it exists and update the templates
-    var applicationId = "<%= id || "" %>";
-    if (applicationId) {
-      $scope.templates.launch.session.application.applicationId = applicationId;
-      $scope.templates.intent.session.application.applicationId = applicationId;
-      $scope.templates.session_end.session.application.applicationId = applicationId;
-    }
-  });
-</script>
-
-<style>
-
-</style>
 
 <div class="container">
   <div class="agent">

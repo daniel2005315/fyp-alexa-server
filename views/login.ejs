@@ -8,13 +8,13 @@
 <%
   // Set default values
   locals.username = locals.username || "";
-  locals.loginMsg = locals.loginMsg || "";
+
   locals.user = locals.user || null;
 %>
 <%- include header.ejs %>
 
   <div class="container" id=content>
-
+<!--
     <form action="/login" method=post >
       <h2 style="margin: 0 auto;"> Welcome!</h2>
       <h4 style="margin: 0 auto;"> Start using by linking with your Gmail account</h4>
@@ -23,12 +23,15 @@
 
       </div>
     </form>
-
-    <hr>
-    <% if (loginMsg) { %>
-      <div class="alert alert-warning" role="alert">
-          <%= loginMsg %>
+-->
+    <div class="card mx-auto mt-5" style="width: 100%; max-width:1000px;">
+      <div class="card-body">
+        <h5 class="card-title">Welcome!</h5>
+        <p class="card-text">Start using by linking with your Google account</p>
+        <a href='https://alexa-server-ck.herokuapp.com/profile' class="card-link"><img src="btn_google_signin_dark_normal_web.png"></a>
       </div>
-    <% } %>
+    </div>
+
+
 
   </div>

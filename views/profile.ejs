@@ -12,12 +12,37 @@
 %>
 <%- include header.ejs %>
 
-<div id=content class="container">
+<div id=content class="container-fluid">
+<div class=row >
+  <nav class="nav flex-column" id="nav">
+    <div class="nav-item">
+      <a class="nav-link justify" href="/profile">User</a></div>
+    <div class="nav-item">
+    <a class="nav-link" href="/status">Status</a></div>
+    <div class="nav-item">
+    <a class="nav-link" href="/profile">Contacts</a></div>
+
+  </nav>
+
+
+<main class="col" role="main">
+
 <%
   console.log(id);
   console.log(locals.user);
   %>
-  <li class="list-group-item">User name:<%=data.username%></li>
+  <div class="container">
+  <ul class="list-group mx-auto mt-5">
+    <li class="list-group-item"><h2><%=data.username%><h2></li>
+    <li class="list-group-item border-bottom-0">User name: <%=data.username%></li>
+    <li class="list-group-item border-top-0 border-bottom-0">Email: <%=data.email%></li>
+    <li class="list-group-item border-top-0 border-bottom-0">Gender: <%=data.gender%></li>
+    <li class="list-group-item border-top-0 border-bottom-0">Scan the following code to start linking with LINE</li>
+    <li class="list-group-item border-top-0 "><img src="/line_QR.png"></li>
+  </ul>
+</div>
+</main>
+</div>
 
 
 </div>
