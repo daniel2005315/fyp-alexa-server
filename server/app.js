@@ -229,16 +229,18 @@ module.exports = function(express,alexaAppServerObject) {
     }
 
     console.log("[webhook] sending speech and context array:");
-    // For odinary context output
-    context_array=context_array.concat({
-      "name": context_name,
-      "lifespan": 1
-    });
+
     // concat message context if any
     if(message_context!=null){
       console.log("Binding message context:");
       console.log(message_context);
       context_array=context_array.concat(message_context);
+    }else{
+      // For odinary context output
+      context_array=context_array.concat({
+        "name": context_name,
+        "lifespan": 1
+      });
     }
     console.log("****Checking the context_array");
     console.log(context_array);
