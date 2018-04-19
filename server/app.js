@@ -200,10 +200,11 @@ module.exports = function(express,alexaAppServerObject) {
     if(result.action==="action.line.send"){
       // get message lineId
       var message_target=contexts_in.find(function (obj) { return obj.name === 'line_send_message'; });
+      console.log("[action.line.send] starts");
+      console.log(message_target);
       var targetID = message_target.target_line;
       var message = param.message;
 
-      console.log("result->",result);
       console.log("[action.line.send] Web hook sending message->"+message);
       console.log("to target=>"+targetID);
 
@@ -239,6 +240,8 @@ module.exports = function(express,alexaAppServerObject) {
       console.log(message_context);
       context_array=context_array.concat(message_context);
     }
+    console.log("****Checking the context_array");
+    console.log(context_array);
 
     // try setting response explicitly
     var response={
