@@ -71,7 +71,7 @@ module.exports = function(express,alexaAppServerObject) {
   // TODO: webhook for fulfillment
   // The webhook will amend context out / speech
   // For certain situation
-  express.post('/webhook', function (req,res){
+  express.post('/webhook', async function (req,res){
     console.log('[webhoook] Triggered')
     // getting session idicating the user
     var sessionId=req.body.sessionId;
@@ -81,6 +81,8 @@ module.exports = function(express,alexaAppServerObject) {
     var contexts_in = result.contexts;
     // output context
     var context_array=[];
+    // for storing message to send, if any
+    var message_context;
     console.log(result);
 
     // Parse JSON for
@@ -128,25 +130,67 @@ module.exports = function(express,alexaAppServerObject) {
 
     // TODO prompt for message
     if(result.action==="line.send"){
+      var target_user;
       // TODO check if contact param is validate
+      console.log("Search DB with user token: "+sessionId);
+      try{
+        let user_obj= await model.findUser(sessionId);
+
+      }catch(err){
+        console.log(err);
+      }
       var contact = param.contact;
       // contact.relation  => look for exact relation in contact
+      if(contact.relation!=null){
+        target_user = user_obj.contacts.find(function(entry){
+          if(entry.relation===contact.relation){
+            return entry.user;
+          }
+        });
+
+      }else if(contact.given_name!=null){
+        // TODO iterate each array entry to look for a match
+        var name_query=contact.given_name;
+        name_query=name_query.toLowerCase().trim();
+        target_user = user_obj.contacts.find(function(entry){
+          var found = entry.name.find(function(name){
+            if(name.toLowerCase().trim()===name_query){
+              return true;
+            }
+          });
+          if(found===true){
+            return entry.user;
+          }
+        });
+
+      }
+      if(target_user!=null){
+        console.log(target_user);
+        // get user's lineID
+        var lineID = target_user.lineID;
+      }
       // contact.given_name   => look for name array in contact
       console.log("[line.send] Web hook got param->"+param.contact);
-      console.log("will search db with user token: "+sessionId);
+
       // TODO if valid, ask for message
       speech="What would you like to say?";
       context_name="line_send_message";
+      message_context={
+        "name": context_name,
+        "target_line": lineID,
+        "lifespan": 1
+      };
     }
 
     if(result.action==="action.line.send"){
-      // get message ObjectId
-      var message_info=contexts_in.find(function (obj) { return obj.name === 'message_info'; });
-      var contact = param.contact;
-      var message = message_info.parameters.message;
+      // get message lineId
+      var message_target=contexts_in.find(function (obj) { return obj.name === 'line_send_message'; });
+      var targetID = message_target.target_line;
+      var message = param.message;
 
       console.log("result->",result);
-      console.log("[action.line.send] Web hook got message->"+message);
+      console.log("[action.line.send] Web hook sending message->"+message);
+      console.log("to target=>"+targetID);
 
       // TODO if successful, say success
       speech="Message sent";
@@ -154,10 +198,15 @@ module.exports = function(express,alexaAppServerObject) {
     }
 
     console.log("[webhook] sending speech and context array:");
+    // For odinary context output
     context_array=context_array.concat({
       "name": context_name,
       "lifespan": 1
     });
+    // concat message context if any
+    if(message_context!=null){
+      context_array=context_array.concat(message_context);
+    }
 
     // try setting response explicitly
     var response={
