@@ -30,8 +30,18 @@ var UserSchema = Schema({
   // lind user id, if linked
   lineID:{type:String,unique:true},
   // contact idicates users that are related
-  contacts:[{type: ObjectId, required:true, ref:'User'}]
+  contacts:[{ContactSchema}]
 });
+
+// TODO contact schema, for relating with other UserSchema
+var ContactSchema = Schema({
+  // refer another user by email, easier for set up
+  email:{type:String,required:true,ref:'User'},
+  // number, taken as string in mongoose, to indicate relationship
+  relation:{type:String},
+  // all kinds of ways, to call this person
+  name:[{type:String}]
+})
 
 // 9-4-2018
 // Status schema to be included in Record

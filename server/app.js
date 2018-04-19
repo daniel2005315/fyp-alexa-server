@@ -115,15 +115,21 @@ module.exports = function(express,alexaAppServerObject) {
         context_name="test2_start";
       }
     }
-    // c.
-    // 3. param
-    // Body check webhook
     // b. body.problem => parameters:{symtom:string, body_part:string}
     if(result.action==="body.problem"){
       // Just for record, no further processing needed
       //speech=result.fulfillment.speech;
       // The above line works
       speech="body problem";
+    }
+
+    // TODO prompt for message
+    if(result.action==="line.send"){
+      // TODO check if contact param is validate
+      console.log("[line.send] Web hook got param->"+param.contact);
+      // TODO if valid, ask for message
+      speech="What would you like to say?";
+      context_name="line_send_message";
     }
 
     console.log("[webhook] sending speech and context array:");
@@ -153,7 +159,7 @@ module.exports = function(express,alexaAppServerObject) {
   });
 
 
-  // TODO: line Webhook
+  // line Webhook
   // Line Channel ID: 1573527052
   // Line Channel secret: 4fa264670227e8b05095f879ed09d344
   // Access token (long lived): rnbw0w2L4LHCCHnRU07CjzH42oYYN7INtOpXoHqsSOJibHfhUpKI7UUN/t8xlZbLh8GqNefkYOtD5iFbvPLvDP3XyKPtmUdZWO2E4JWxhxNmIfSpNbjszL8uneB+eSEEmCmf9Th1KFFhKDSgQWHnKwdB04t89/1O/w1cDnyilFU=
