@@ -188,7 +188,7 @@ module.exports = function(express,alexaAppServerObject) {
           "parameters":{
           "target_line": lineID
           },
-          "lifespan": 1
+          "lifespan": 2
         };
 
       }catch(err){
