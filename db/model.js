@@ -55,7 +55,7 @@ var StatusSchema = Schema({
   memory:{type:Number, default:0},
   // score for body condition / comfortable or not
   // range -3 ~ 3
-  body:{type:Number, default:0}
+  body:{type:Number, default:3}
 });
 
 // body status schema to be included in RecordSchema
@@ -74,7 +74,13 @@ var RecordSchema = Schema({
   count:{type:Number, default:0},
   avg_sentiment_score:{type:Number,default:0},
   // array of status object
-  status:[StatusSchema],
+  // mental health ranges -3~3
+  mental:{type:Number, default:0},
+  // score from memory questions
+  memory:{type:Number, default:0},
+  // score for body condition / comfortable or not
+  // range -3 ~ 3
+  body:{type:Number, default:3},
   // array of body status object
   bodyCheck:[BodySchema]
 });
@@ -368,6 +374,28 @@ async function updateUserDailyRecord(accessToken, field, value){
   }
 }
 
+// update daily specific status
+async function updateUserDailyRecordAdd(accessToken, field, value){
+  try{
+    // get the user record
+    let record = await findUserDailyRecord(accessToken,date.yyyymmdd());
+
+    var id = record._id;
+    //console.log("[updateUserDailyRecord] record id ",id);
+    let _id = new mongoose.Types.ObjectId(id);
+
+    var updateparam = {};
+    updateparam[field] = value;
+    let result = await Record.
+      findOneAndUpdate({_id: _id},
+        {$inc:updateparam},{new:true}).exec();
+    console.log("[updateUserDailyRecordAdd] update result: ", result);
+
+  }catch(err){
+    console.log("[updateUserDailyRecord] err ",err);
+  }
+}
+
 async function updateUserInfo(accessToken, field, value){
   try{
     var updateparam = {};
@@ -433,6 +461,7 @@ module.exports = {
   createDailyRecord: createDailyRecord,
   getUserTodaysRecord: getUserTodaysRecord,
   updateUserDailyRecord: updateUserDailyRecord,
+  updateUserDailyRecordAdd:updateUserDailyRecordAdd,
   getUserContactsID: getUserContactsID,
   addUserContact: addUserContact,
   addUser: addUser

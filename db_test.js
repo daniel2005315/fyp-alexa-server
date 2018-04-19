@@ -173,4 +173,4 @@ async function getUserContactsID(access_token) {
 
 //runTest();
 //updateDB2();
-getUserContactsID("101ihave1nc3th5le1f5oeishahaline");
+model.updateUserDailyRecordAdd("101ihave1nc3th5le1f5oeishahaline","body",1);
