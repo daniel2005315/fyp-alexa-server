@@ -158,10 +158,12 @@ module.exports = function(express,alexaAppServerObject) {
           // TODO iterate each array entry to look for a match
           var name_query=contact.given_name;
           name_query=name_query.toLowerCase().trim();
+          console.log("looking for name: ",name_query);
           target_user = user_obj.contacts.find(function(entry){
             console.log("looking at entry:")
             console.log(entry);
             var found = entry.name.find(function(name){
+              console.log("looking at name: "+name.toLowerCase().trim())
               if(name.toLowerCase().trim()===name_query){
                 return true;
               }
