@@ -68,6 +68,14 @@ module.exports = function(express,alexaAppServerObject) {
 
 	})
 
+  // 19-4-2018 TODO show personal moviedetails
+  // TODO add back the oauth2.required, middle ware later
+  express.use('/settings',oauth2.required, (req,res)=>{
+    res.locals.profile=req.user;
+    res.render("profile.ejs",{title:"My account"});
+
+  })
+
   // TODO: webhook for fulfillment
   // The webhook will amend context out / speech
   // For certain situation
@@ -169,11 +177,13 @@ module.exports = function(express,alexaAppServerObject) {
               }
             });
             if(found===true){
+              console.log("Found!");
               return entry;
             }
           });
 
         }
+        console.log(target_user);
         if(target_user!=null){
           let result = await model.findUserbyID(target_user._id);
           // get user's lineID

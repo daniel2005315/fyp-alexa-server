@@ -40,7 +40,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <% if (user) { %>
-          <li class="nav-item"><a class="nav-link" style="color: white">Hello, <%= user.charAt(0).toUpperCase() + user.slice(1)%></a></li>
+          <li class="nav-item"><a class="nav-link" style="color: white">Hello, <%= user.displayName%></a></li>
           <li class="nav-item"><a id="userBalance" class="nav-link" style="color: white">Your balance is: <%= userData.balance%></a></li>
           <li class="nav-item">
           <a class="nav-link" href="/mypreference">My Preference</a>
@@ -55,7 +55,7 @@
         </li>
         <% if (user) { %>
           <li class="nav-item">
-          <a class="nav-link" href="/logout">Log out</a>
+          <a class="nav-link" href="/auth/logout">Log out</a>
         </li>
         <% } %>
       </ul>

@@ -1,0 +1,21 @@
+<%# "locals" is the object containing the properties passed from
+    res.render(). A property named 'username' can be referenced
+    in two ways
+    (A) As 'username' directly provided it is not undefined
+    (B) As 'locals.username'
+%>
+<%
+
+  locals.user = locals.profile || null;
+  id="amzn1.ask.skill.479c8c69-349f-42f0-896a-7c6a8c3b267d";
+
+%>
+<%- include header.ejs %>
+
+<div id=content class="container">
+<%
+  console.log(id);
+  console.log(locals.user);
+  %>
+
+</div>
