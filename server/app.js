@@ -146,7 +146,7 @@ module.exports = function(express,alexaAppServerObject) {
             console.log("looking at entry:")
             console.log(entry);
             if(entry.relation===contact.relation){
-              return entry._id;
+              return entry;
             }
 
           });
@@ -165,15 +165,16 @@ module.exports = function(express,alexaAppServerObject) {
               }
             });
             if(found===true){
-              return entry._id;
+              return entry;
             }
           });
 
         }
-        // Target_user is the user's server id
-        if(target_user!=null){
-          let result = await model.findUser(target_user);
+        // Target_user is a String
+        target_user= JSON.parse(target_user);
 
+        if(target_user!=null){
+          let result = await model.findUser(target_user._id);
           // get user's lineID
           var lineID = result.lineID;
         }
