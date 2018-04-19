@@ -19,6 +19,18 @@ Date.prototype.yyyymmdd = function() {
 var date = new Date();
 
 
+
+
+// TODO contact schema, for relating with other UserSchema
+var ContactSchema = Schema({
+  // reference to user
+  user:{type:ObjectId,required:true,ref:'User'},
+  // number, taken as string in mongoose, to indicate relationship
+  relation:{type:String},
+  // all kinds of ways, to call this person
+  name:[{type:String}]
+});
+
 var UserSchema = Schema({
   username: { type: String, required: false, unique: true },
   email: { type: String, unique: true, required: true },
@@ -30,18 +42,9 @@ var UserSchema = Schema({
   // lind user id, if linked
   lineID:{type:String,unique:true},
   // contact idicates users that are related
-  contacts:[{ContactSchema}]
+  contacts:[ContactSchema]
 });
 
-// TODO contact schema, for relating with other UserSchema
-var ContactSchema = Schema({
-  // refer another user by email, easier for set up
-  email:{type:String,required:true,ref:'User'},
-  // number, taken as string in mongoose, to indicate relationship
-  relation:{type:String},
-  // all kinds of ways, to call this person
-  name:[{type:String}]
-})
 
 // 9-4-2018
 // Status schema to be included in Record
