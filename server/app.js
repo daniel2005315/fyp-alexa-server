@@ -138,52 +138,60 @@ module.exports = function(express,alexaAppServerObject) {
       try{
         user_obj= await model.findUser(sessionId);
 
+        var contact = param.contact;
+        // contact.relation  => look for exact relation in contact
+        if(contact.relation!=null){
+          console.log("[cotact.relation]runs")
+          target_user = user_obj.contacts.find(function(entry){
+            console.log("looking at entry:")
+            console.log(entry);
+            if(entry.relation===contact.relation){
+              return entry.user;
+            }
+          });
+
+        }else if(contact.given_name!=null){
+          console.log("[cotact.given_name]runs")
+          // TODO iterate each array entry to look for a match
+          var name_query=contact.given_name;
+          name_query=name_query.toLowerCase().trim();
+          target_user = user_obj.contacts.find(function(entry){
+            console.log("looking at entry:")
+            console.log(entry);
+            var found = entry.name.find(function(name){
+              if(name.toLowerCase().trim()===name_query){
+                return true;
+              }
+            });
+            if(found===true){
+              return entry.user;
+            }
+          });
+
+        }
+        if(target_user!=null){
+          console.log(target_user);
+          // get user's lineID
+          var lineID = target_user.lineID;
+        }
+        // contact.given_name   => look for name array in contact
+        console.log("[line.send] Web hook got lindID->"+lineID);
+
+        // TODO if valid, ask for message
+        speech="What would you like to say?";
+        context_name="line_send_message";
+        message_context={
+          "name": context_name,
+          "parameters":{
+          "target_line": lineID
+          },
+          "lifespan": 1
+        };
+
       }catch(err){
         console.log(err);
       }
-      var contact = param.contact;
-      // contact.relation  => look for exact relation in contact
-      if(contact.relation!=null){
-        target_user = user_obj.contacts.find(function(entry){
-          if(entry.relation===contact.relation){
-            return entry.user;
-          }
-        });
 
-      }else if(contact.given_name!=null){
-        // TODO iterate each array entry to look for a match
-        var name_query=contact.given_name;
-        name_query=name_query.toLowerCase().trim();
-        target_user = user_obj.contacts.find(function(entry){
-          var found = entry.name.find(function(name){
-            if(name.toLowerCase().trim()===name_query){
-              return true;
-            }
-          });
-          if(found===true){
-            return entry.user;
-          }
-        });
-
-      }
-      if(target_user!=null){
-        console.log(target_user);
-        // get user's lineID
-        var lineID = target_user.lineID;
-      }
-      // contact.given_name   => look for name array in contact
-      console.log("[line.send] Web hook got lindID->"+lineID);
-
-      // TODO if valid, ask for message
-      speech="What would you like to say?";
-      context_name="line_send_message";
-      message_context={
-        "name": context_name,
-        "parameters":{
-        "target_line": lineID
-        },
-        "lifespan": 1
-      };
     }
 
     if(result.action==="action.line.send"){
@@ -201,18 +209,19 @@ module.exports = function(express,alexaAppServerObject) {
         // include own name
         let source = await model.getUserName(sessionId);
         let result=await ulala.line_push(targetID,message,source);
+        // TODO if successful, say success
+        if(result){
+          speech="Message sent";
+          context_name="line_send_message_success";
+        }else{
+          speech="There was an error, please try again later";
+          context_name="line_send_message_failed";
+        }
       }catch(err){
         console.log(err);
       }
 
-      // TODO if successful, say success
-      if(result){
-        speech="Message sent";
-        context_name="line_send_message_success";
-      }else{
-        speech="There was an error, please try again later";
-        context_name="line_send_message_failed";
-      }
+
     }
 
     console.log("[webhook] sending speech and context array:");
