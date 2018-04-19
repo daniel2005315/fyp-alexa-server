@@ -73,9 +73,12 @@ module.exports = function(express,alexaAppServerObject) {
   // For certain situation
   express.post('/webhook', function (req,res){
     console.log('[webhoook] Triggered')
+    // getting session idicating the user
+    var sessionId=req.body.sessionId;
     var speech;
     var result=req.body.result;
     var param=result.parameters;
+    var contexts_in = result.contexts;
     // output context
     var context_array=[];
     console.log(result);
@@ -130,18 +133,21 @@ module.exports = function(express,alexaAppServerObject) {
       // contact.relation  => look for exact relation in contact
       // contact.given_name   => look for name array in contact
       console.log("[line.send] Web hook got param->"+param.contact);
+      console.log("will search db with user token: "+sessionId);
       // TODO if valid, ask for message
       speech="What would you like to say?";
       context_name="line_send_message";
     }
 
     if(result.action==="action.line.send"){
-      // TODO check if contact param is validate
+      // get message ObjectId
+      var message_info=contexts_in.find(function (obj) { return obj.name === 'message_info'; });
       var contact = param.contact;
-      // contact.relation  => look for exact relation in contact
-      // contact.given_name   => look for name array in contact
-      console.log("[action.line.send] Web hook got param->"+param);
-      console.log("result->"result);
+      var message = message_info.parameters.message;
+
+      console.log("result->",result);
+      console.log("[action.line.send] Web hook got message->"+message);
+
       // TODO if successful, say success
       speech="Message sent";
       context_name="line_send_message_success";
