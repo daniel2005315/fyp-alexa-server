@@ -143,8 +143,10 @@ module.exports = function(express,alexaAppServerObject) {
         if(contact.relation!=null){
           console.log("[cotact.relation]runs")
           target_user = user_obj.contacts.find(function(entry){
-            console.log("looking at entry:")
+            console.log("looking at entry:");
             console.log(entry);
+            console.log("try accessing as JSON");
+            console.log(entry._id);
             if(entry.relation===contact.relation){
               return entry;
             }
