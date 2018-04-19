@@ -230,5 +230,6 @@ module.exports ={
   make_request: make_request,
   line_request:line_request,
   line_push:line_push,
-  line_pushBody: line_pushBody
+  line_pushBody: line_pushBody,
+  line_SOS: line_SOS
 }
