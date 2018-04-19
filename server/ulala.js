@@ -141,10 +141,7 @@ async function line_push(lineID,message,source){
       json:true,
       body:{
         "to": lineID,
-        "messages": [{
-            "type": "text",
-            "text": "You've got a message from "+source+"!"
-        },
+        "messages": [
         {
             "type": "text",
             "text": message
@@ -159,6 +156,12 @@ async function line_push(lineID,message,source){
     console.log(err);
   }
 }
+/*
+{
+    "type": "text",
+    "text": "You've got a message from "+source+"!"
+},
+*/
 
 module.exports ={
   make_request: make_request,
