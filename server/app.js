@@ -79,6 +79,8 @@ module.exports = function(express,alexaAppServerObject) {
     var result=req.body.result;
     var param=result.parameters;
     var contexts_in = result.contexts;
+    // For db query
+    var user_obj;
     // output context
     var context_array=[];
     // for storing message to send, if any
@@ -134,7 +136,7 @@ module.exports = function(express,alexaAppServerObject) {
       // TODO check if contact param is validate
       console.log("Search DB with user token: "+sessionId);
       try{
-        let user_obj= await model.findUser(sessionId);
+        user_obj= await model.findUser(sessionId);
 
       }catch(err){
         console.log(err);
