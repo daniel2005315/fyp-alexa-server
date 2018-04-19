@@ -125,10 +125,10 @@ module.exports = function(express,alexaAppServerObject) {
     if(result.action==="elder.test1.answer"){
       console.log("[webhook] test ans check");
       var day = getDayofWeek();
-      console.log("correct ans: ",day);
+      console.log("correct ans: ",day.toLowerCase().trim());
       var user_ans = param.date;
-      console.log("user answer: ",user_ans);
-      if(day.toLowerCase()===user_ans.toLowerCase()){
+      console.log("user answer: ",user_ans.toLowerCase().trim());
+      if(day.toLowerCase().trim()===user_ans.toLowerCase().trim()){
         speech="Great! You got it right! Now, let me ask you, have you taken your pills?";
         context_name="test2_start";
       }else{
@@ -142,9 +142,9 @@ module.exports = function(express,alexaAppServerObject) {
       // check if the answer is correct
       var day = getDayofWeek();
       var context_name;
-      console.log("correct ans: ",day);
+      console.log("correct ans: ",day.toLowerCase().trim());
       var user_ans = param.date;
-      console.log("user answer: ",user_ans);
+      console.log("user answer: ",user_ans.toLowerCase().trim());
       if(day.toLowerCase()===user_ans.toLowerCase()){
         speech="Great! You got it right! Now, let me ask you, have you taken your pills?";
         context_name="test2_start";
