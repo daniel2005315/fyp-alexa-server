@@ -213,7 +213,7 @@ module.exports = function(express,alexaAppServerObject) {
         console.log("ready to reply the user");
         console.log(event);
         let reply = await ulala.line_request(event.source.userId,event.message.text);
-        // TODO return reply to line
+        // TODO ############return reply to line
         console.log("Send reply");
       }
     }

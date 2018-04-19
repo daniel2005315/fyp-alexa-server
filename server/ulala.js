@@ -125,5 +125,6 @@ async function make_request(accessToken, message){
 }
 
 module.exports ={
-  make_request: make_request
+  make_request: make_request,
+  line_request:line_request
 }
