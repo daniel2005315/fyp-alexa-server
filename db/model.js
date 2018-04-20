@@ -248,11 +248,18 @@ async function findUserLine(userID){
 // Find if the user exists by Email
 // Return the access_token of user
 async function findUserByEmail(email) {
+  try{
   let result = await User.
     findOne( {"email": email} ).exec();
      // return the token
-
-  return result.access_token;
+  if(result!=null){
+    return result.access_token;
+  }else{
+    return null;
+  }
+  }catch(err){
+    console.log(err);
+  }
 }
 
 
@@ -313,7 +320,6 @@ async function createDailyRecord(access_token,yyyymmdd) {
       avg_sentiment_score:0,
       status:[new Status()]
     });
-    // TODO: may not work
     let result = await record.save();
     result.owner=user;
     //console.log("CHECK***");
