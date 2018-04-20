@@ -26,20 +26,20 @@
 
 
 <main class="col" role="main">
-
+<div class="container">
 <%
-  console.log(id);
-  console.log(locals.user);
+  console.log("Data passed to the page:");
+  data.forEach(function(contact){
+    console.log(contact);
   %>
-  <div class="container">
+
   <ul class="list-group mx-auto mt-5">
-    <li class="list-group-item"><h2><%=data.username%><h2></li>
-    <li class="list-group-item border-bottom-0">User name: <%=data.username%></li>
-    <li class="list-group-item border-top-0 border-bottom-0">Email: <%=data.email%></li>
-    <li class="list-group-item border-top-0 border-bottom-0">Gender: <%=data.gender%></li>
-    <li class="list-group-item border-top-0 border-bottom-0">Scan the following code to start linking with LINE</li>
-    <li class="list-group-item border-top-0 "><img src="/line_QR.png"></li>
+    <li class="list-group-item"><h2><h2></li>
+    <li class="list-group-item border-bottom-0">User name: <%= contact.username %></li>
+    <li class="list-group-item border-top-0 border-bottom-0">Email: <%= contact.email %></li>
+    <li class="list-group-item border-top-0">Gender: <%= contact.gender %></li>
   </ul>
+  <% }); %>
 </div>
 </main>
 </div>

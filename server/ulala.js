@@ -210,9 +210,6 @@ async function line_SOS(lineID,source){
                     "text": source+" NEED HELP IMMEDIATLY"
                   },{
                     "type": "text",
-                    "text": symtom
-                  },{
-                    "type": "text",
                     "text": "PLEASE OFFER HELP ASAP!"
                   }]
       }

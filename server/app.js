@@ -99,6 +99,26 @@ module.exports = function(express,alexaAppServerObject) {
     }
 
   });
+
+  // tab for displaying user Contacts
+  express.use('/contacts',oauth2.required, async function (req,res){
+    try{
+      var contact_obj=[];
+      console.log("getting settings");
+      res.locals.profile=req.user;
+      let user = await model.findUser(req.user.accessToken);
+      // iterate each contacts of user
+      let contact_ids=await model.getUserContactsID(user.access_token);
+      for(var i=0;i<contact_ids.length;i++){
+        contact_obj[i]= await model.findUserbyID(contact_ids[i]);
+      }
+      res.render("contacts.ejs",{title:"Status",data:contact_obj});
+
+    }catch(err){
+      console.log(err);
+    }
+
+  });
   // TODO: webhook for fulfillment
   // The webhook will amend context out / speech
   // For certain situation

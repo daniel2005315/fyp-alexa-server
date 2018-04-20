@@ -48,10 +48,11 @@
           <a class="nav-link" href="/login">Login</a>
         </li>
         <% } %>
+        <% if (user) { %>
         <li class="nav-item">
           <a class="nav-link" href="/profile">Profile</a>
         </li>
-        <% if (user) { %>
+
           <li class="nav-item">
           <a class="nav-link" href="/auth/logout">Log out</a>
         </li>
